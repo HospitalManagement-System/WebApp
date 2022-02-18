@@ -1,0 +1,253 @@
+<div class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0"> DashBoard</h1>
+            </div>
+
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class=" row small-box bg-gradient-info">
+
+                <div class=" inner">
+                  <h3><i class="fas fa-envelope-square"></i></h3>
+
+                  <span class="row">
+                    <h5 class="col-10">Inbox</h5>
+                  </span>
+                </div>
+
+                <a (click)="OnInbox()" class="small-box-footer pointer text-black bg-white"><b>More info </b><i
+                    class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box text-white bg-gradient-warning">
+                <div class="inner">
+                  <h3>{{appointmentCount}}</h3>
+
+                  <h5> Today Appointments</h5>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+                <a (click)="Onappointment()" class="small-box-footer pointer text-black bg-white"><b>More info </b><i
+                    class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-gradient-success">
+                <div class="inner">
+                  <h3>{{upappointmentCount}}</h3>
+
+                  <h5>Upcoming Appointments</h5>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a (click)="Ondoctorlist()" class="small-box-footer text-black pointer bg-white"
+                ><b>More info </b><i class="fa fa-arrow-circle-right"></i
+              ></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-gradient-danger">
+                <div class="inner">
+                  <h3><i class="fa fa-calendar" aria-hidden="true"></i></h3>
+                  <span class="row">
+                    <h5 class="col-10" >Calender</h5>
+                  </span>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person-add"></i>
+                </div>
+                <a (click)="OnclickCalander()" routerLinkActive="router-link-active"
+               (click)="setTitle('View Physician')" class="small-box-footer pointer text-black bg-white"><b>More info </b><i
+                    class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <section class="col-lg-6 pl-0  w-100 connectedSortable">
+
+              <div class="card bg-white">
+                <h5 class="mt-2 mb-1  pr-2 pl-2">Current Patient</h5>
+
+                <div class="example-container mat-elevation-z8"  class="table-content "
+                  style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden;">
+                  <mat-form-field class="mt-2 pl-2" style="width: 50%">
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Search Here">
+                  </mat-form-field>
+                  <div class="spinner-container">
+                  </div>
+
+                  <mat-table class="mb-2" #table [dataSource]="dataSource1">
+
+                    <ng-container matColumnDef="id" [style.display]="'none'">
+                      <mat-header-cell *matHeaderCellDef [style.display]="'none'"
+                        mat-sort-headerstyle="font-size: medium;" style="font-size: medium;"> Id
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let element" [style.display]="'none'" matTooltip="id"> {{element.id}}
+                      </mat-cell>
+                    </ng-container>
+
+                    <!-- Second Column -->
+                    <ng-container matColumnDef="name">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;"> Patient Name
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let element" matTooltip={{element.name}}><span
+                          class="ellipsis">{{element.name}}</span> </mat-cell>
+                    </ng-container>
+
+                    <!-- Third Column -->
+                    <ng-container matColumnDef="physician">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;"> Assigned Physician
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.physicanName}}
+                      </mat-cell>
+                    </ng-container>
+
+                    <!-- Fourth Column -->
+                    <ng-container matColumnDef="diagnosis">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;"> Diagnosis Reason
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let element" matTooltip={{element.diagnosis}}><span
+                          class="ellipsis">{{element.diagnosis}}</span> </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="edit">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;"> Action
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let element"> <button mat-icon-button class="iconbutton" color="primary"
+                          (click)="OnVitalRecord(element.id)">
+                          <i class="fa fa-eye"></i>
+                          <!-- <mat-icon matTooltip="Click To Move Into DoctorsQue"> verified_user </mat-icon> -->
+                        </button> </mat-cell>
+
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumnspatient"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumnspatient;"></mat-row>
+                  </mat-table>
+
+
+                  <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"
+                    [showFirstLastButtons]="true">
+                  </mat-paginator>
+
+
+
+                </div>
+
+              </div>
+
+            </section>
+            <section class="col-lg-6  pl-0 connectedSortable">
+              <div class=" card bg-light">
+<h5 class="p-2">Physician Attendance</h5>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                  <span class="row">
+                    <h6 class="ml-2 col-5  mt-2 mb-2">
+                      Attendance Date
+                    </h6>
+                    <h6 class="pl-2 col-5 mt-2">Non Available Slots</h6>
+                  </span>
+                  <div class="card-tools row ">
+                    <span class="col-5  pl-3" style="width: 20%;">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Today a date</mat-label>
+                        <input matInput formControlName='date' [matDatepicker]="picker"  [ngClass]="{
+                          'is-invalid':
+                            submitted &&
+                            this.form.controls['date'].invalid
+                        }">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    </span>
+                    <span class="col-5 ml-2">
+                      <span>
+                        <mat-form-field appearance="outline">
+                          <mat-label>Select Slots</mat-label>
+                          <mat-select formControlName="timeSlot"  multiple>
+                            <mat-option>Select</mat-option>
+                            <mat-option *ngFor="let list of firstslot" [value]="list">
+                              {{list}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </span>
+
+                    </span>
+
+                  </div>
+                  <div class="row">
+                    <span class="col-5 pl-2 ml-2">
+
+                      <mat-label>IsAbsent </mat-label>
+                      <input formControlName='isAbsent' type="checkbox">
+
+                    </span>
+                  </div>
+                  <button type="submit" class="btn btn-success mb-1 ml-1 mt-2"
+                    (click)="AddPhysiciandetails(0)">Submit</button>
+                </form>
+
+              </div>
+
+
+            </section>
+        
+            <section class="col-6">
+             
+            </section>
+
+          </div>
+          <div class="row ">
+            <section class="col-lg-6  ">
+              <div class="card bg-white">
+             <app-barchart></app-barchart>
+             </div>
+
+            </section>
+         
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+
+
+
+  </div>
+
+</div>

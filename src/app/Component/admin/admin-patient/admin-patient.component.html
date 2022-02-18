@@ -1,0 +1,209 @@
+<!-- <div class="row offset-2">
+  <div class="mat-elevation-z8 m-3">
+    <mat-form-field appearance="standard">
+      <mat-label>Unlock</mat-label>
+      <input matInput (keyup)="DeactivaeapplyFilter($event)" #input />
+    </mat-form-field>
+    <table mat-table [dataSource]="DeactivePatientdataSource">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id.</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.id }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>FirstName</th>
+        <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="contact">
+        <th mat-header-cell *matHeaderCellDef>Contact</th>
+        <td mat-cell *matCellDef="let element">{{ element.contact }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef>Unlock</th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.isActive; else deactivate">
+            <mat-slide-toggle
+              [checked]="element.isActive"
+              (change)="updateActiveStatus(element)"
+              color="accent"
+            >
+            </mat-slide-toggle>
+          </ng-container>
+          <ng-template #deactivate>
+            <mat-slide-toggle
+              [checked]="element.isActive"
+              (change)="updateActiveStatus(element)"
+              color="deactivate"
+            >
+            </mat-slide-toggle>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedoneColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedoneColumns"></tr>
+    </table>
+
+    <div class="offset-1"></div>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
+  <div class="mat-elevation-z8 m-3">
+    <mat-form-field appearance="standard">
+      <mat-label>Activate</mat-label>
+      <input matInput (keyup)="DeactivaeapplyFilter($event)" #input />
+    </mat-form-field>
+    <table mat-table [dataSource]="SoftDeletePatientdataSource">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id.</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.id }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>FirstName</th>
+        <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="contact">
+        <th mat-header-cell *matHeaderCellDef>Contact</th>
+        <td mat-cell *matCellDef="let element">{{ element.contact }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef>Activate</th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.isActive; else deactivate">
+            <mat-slide-toggle
+              [checked]="element.isActive"
+              (change)="updateActiveStatus(element)"
+              color="accent"
+            >
+            </mat-slide-toggle>
+          </ng-container>
+          <ng-template #deactivate>
+            <mat-slide-toggle
+              [checked]="element.isActive"
+              (change)="updateActiveStatus(element)"
+              color="deactivate"
+            >
+            </mat-slide-toggle>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedtwoColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedtwoColumns"></tr>
+    </table>
+
+    <div class="offset-1"></div>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
+</div> -->
+
+<div class="container-fluid">
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="PatientapplyFilter($event)" #input />
+    </mat-form-field>
+    <table mat-table [dataSource]="PatientdataSource">
+      <!-- <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef>Id.</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.userId }}
+        </td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>FirstName</th>
+        <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="contact">
+        <th mat-header-cell *matHeaderCellDef>Contact</th>
+        <td mat-cell *matCellDef="let element">{{ element.contact }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef>Active</th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.isActive; else deactivate">
+            <mat-slide-toggle
+              [checked]="element.isActive"
+              (change)="updateActiveStatus(element)"
+              color="accent"
+            >
+            </mat-slide-toggle>
+          </ng-container>
+          <ng-template #deactivate>
+            <mat-slide-toggle
+              [checked]="element.isActive"
+              (change)="updateActiveStatus(element)"
+              color="deactivate"
+            >
+            </mat-slide-toggle>
+          </ng-template>
+        </td>
+      </ng-container>
+
+     
+      <ng-container matColumnDef="isLocked">
+        <th mat-header-cell *matHeaderCellDef>IsLocked</th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.isLocked; else deactivate">
+            <mat-slide-toggle
+              [checked]="element.isLocked"
+              (change)="updateIsLockedStatus(element)"
+              color="accent"
+            >
+            </mat-slide-toggle>
+          </ng-container>
+          <ng-template #deactivate>
+            <mat-slide-toggle
+              [checked]="element.isLocked"
+              (change)="updateIsLockedStatus(element)"
+              color="deactivate"
+            >
+            </mat-slide-toggle>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedthreeColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedthreeColumns"></tr>
+    </table>
+
+  
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+</div>

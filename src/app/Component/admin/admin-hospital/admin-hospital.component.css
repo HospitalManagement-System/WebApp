@@ -1,0 +1,57 @@
+@import url('../../../../assets/css/Common.css');
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+ 
+
+}
+
+th {
+  border-bottom: 1px solid #000;
+  background-color:#ABCFE6;
+  color: black;
+  text-align: center !important;
+}
+td{
+   border-bottom: 1px solid #000;  
+}
+
+td{ 
+  padding: 20px 0;
+  text-align: center;
+  border: 1px solid lightgray;
+}
+
+tr {
+  background: #fff;
+}
+
+th{
+  border-bottom: 1px solid #000;
+  background-color:#ABCFE6;
+  color: black;
+  font-size: 1vw;
+  border: 1px solid #000;
+  text-align: center;
+}
+
+ 
+mat-header-cell{
+  border-bottom: 1px solid #000;
+  background-color:#ABCFE6;
+  color: black;
+  font-size: 0.9vw;
+  text-align: center !important;
+
+}
+
+mat-header-cell, mat-cell {
+  justify-content: center;
+}
+mat-cell ,td { 
+  font-size: 0.9vw;
+  text-align: center !important;
+  border: 1px solid lightgray;
+}

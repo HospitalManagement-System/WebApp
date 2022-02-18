@@ -1,0 +1,196 @@
+<!-- <p>book-appointment works!</p> -->
+<div style="margin-left: 3px">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+ 
+    <mat-card-content>
+      <div class="container" style="margin: 2%">
+        <div
+          fxLayout="row"
+          fxFlex="1 0 0"
+          fxLayoutGap="0px"
+          fxLayputAlign="center center"
+        >
+          <div fxFlex.gt-md="30" fxFlex.gt-sm="90" fxFlex.sm="60" fxFlex="100">
+            <div fxLayout="column" style="margin-top: 2%">
+              <div fxFlex="30" class="flex-p">
+                <mat-accordion>
+                  <mat-card class="demo-inline-calendar-card">
+                    <mat-calendar
+                      (selectedChange)="updateFormDate($event)"
+                      [minDate]="minDate"
+                    ></mat-calendar>
+                  </mat-card>
+                  <!-- (selectedChange)="selected = $event" -->
+                  <!-- [ngStyle]="datecheck && {border-bottom: solid 2px red}" -->
+                  <p
+                    [style.border-bottom]="
+                      datecheck === true ? 'solid 2px red' : 'solid 2px white'
+                    "
+                  >
+                    Selected date: {{ selectedDate }}
+                  </p>
+                </mat-accordion>
+              </div>
+            </div>
+          </div>
+          <div fxFlex="10" class="flex-p"></div>
+          <div fxFlex="60" class="flex-p">
+            <span>
+              <mat-form-field appearance="outline">
+                <mat-label>title</mat-label>
+                <input
+                  matInput
+                  placeholder="Title"
+                  readonly="true"
+                  value="{{ TextInput }}"
+                />
+              </mat-form-field>
+            </span>
+            <span>
+              <mat-form-field appearance="outline">
+                <mat-label>Mode </mat-label>
+                <mat-select
+                  (selectionChange)="changeMode($event)"
+                  formControlName="ModeType"
+                  [disabled]="editing"
+                >
+                  <mat-option>Select</mat-option>
+                  <mat-option
+                    *ngFor="let item of ModeTypes"
+                    [value]="item.modeType"
+                  >
+                    {{ item.modeType }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </span>
+            <span>
+              <mat-form-field
+                appearance="outline"
+                [class]="
+                  diagnosicscheck === true ? 'border-red' : 'border-black'
+                "
+              >
+                <mat-label>Diagnosis</mat-label>
+                <!-- Based on value items changes automatically [value]="item.Value" -->
+
+                <mat-select
+                  (selectionChange)="changeDiagnosics($event)"
+                  formControlName="diagnosicsName"
+                  [disabled]="editing"
+                >
+                  <mat-option>Select</mat-option>
+                  <mat-option
+                    *ngFor="let item of diagnosics"
+                    [value]="item.value"
+                  >
+                    {{ item.value }}</mat-option
+                  >
+                </mat-select>
+                <!-- error block -->
+                <div
+                  class="invalid-feedback"
+                  *ngIf="isSubmitted && diagnosicscheck"
+                >
+                  <sup>*</sup>Please Select Diagnosics
+                </div>
+              </mat-form-field>
+            </span>
+            <span>
+              <mat-form-field appearance="outline">
+                <mat-label style="color: black">Physician</mat-label>
+                <mat-select
+                  (selectionChange)="changePhysician($event)"
+                  formControlName="phsicianName"
+                >
+                  <mat-option>Select</mat-option>
+                  <mat-option *ngFor="let item of physician" [value]="item.id">
+                    {{ item.physicianName }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </span>
+            <span>
+              <mat-form-field appearance="outline">
+                <mat-label style="color: black">Description</mat-label>
+
+                <input
+                  matInput
+                  placeholder="Description"
+                  formControlName="descriptionName"
+                />
+              </mat-form-field>
+            </span>
+            <mat-expansion-panel #matExpansionPanel (opened)="expClick()">
+              <mat-expansion-panel-header
+                [style.border-bottom]="
+                  slotcheck === true ? 'solid 2px red' : 'solid 2px white'
+                "
+              >
+                Slots
+              </mat-expansion-panel-header>
+              <label><b>Section 1</b></label
+              ><br />
+              <div class="btn-group" *ngFor="let number of firstslot">
+                <button
+                  #test
+                  mat-raised-button
+                  style="background-color: #00ff00"
+                  class="inline"
+                  type="button"
+                  id="{{ number }}"
+                  (click)="Slot(test)"
+                >
+                  {{ number }}
+                </button>
+                <!-- <mat-card-content>
+                    <input />
+                    {{ number }}
+                  </mat-card-content> -->
+              </div>
+              <br />
+              <label><b>Section 2</b></label
+              ><br />
+              <div class="btn-group" *ngFor="let number of secondslot">
+                <button
+                  #test
+                  mat-raised-button
+                  style="background-color: #00ff00"
+                  id="{{ number }}"
+                  (click)="Slot(test)"
+                >
+                  {{ number }}
+                </button>
+              </div>
+            </mat-expansion-panel>
+
+         
+          </div>
+        
+        </div>
+      </div>
+      <div>
+        <mat-card>
+          <div style="margin-left: 75%">
+            <button mat-raised-button class="btn-success bg-success text-white btn" type="submit">Save</button>
+  
+            <!-- <button mat-raised-button color="primary" type="button">
+                Update
+              </button> -->
+  
+            <button
+              mat-raised-button
+              class="btn-danger bg-danger text-white btn"
+              type="button"
+              (click)="Clear()"
+            >
+              Clear
+            </button>
+          </div>
+        </mat-card>
+      </div>
+    </mat-card-content>
+    
+   
+  </form>
+</div>

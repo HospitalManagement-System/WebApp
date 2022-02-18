@@ -1,0 +1,180 @@
+/* .example-button-toggle-label {
+    display: inline-block;
+    margin: 16px;
+  } */
+  h1 {
+    text-align:center;
+}
+
+
+.mat-card {
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  position: relative;
+  padding: 0px !important;
+  border-radius: 4px;
+}
+
+/* .mat-tab-label {
+  min-width: 25px !important;
+  padding: 5px;
+  background-color: transparent;
+  color: black;
+  font-weight: 700;
+} */
+
+.mat-tab-label.mat-tab-label-active {
+  min-width: 25px !important;
+  padding: 5px;
+  background-color: transparent;
+  color: black;
+  font-weight: 700;
+}
+
+/* Styles for the ink bar */
+.mat-ink-bar {
+  background-color: green;
+}
+
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.widthcol1{
+  width: 20%;
+}
+
+.widthcol2{
+  width: 15%;
+}
+
+.widthcol3{
+  width: 10%;
+}
+.widthcol4{
+  width: 40%;
+}
+
+.widthcol5{
+  width: 35%;
+}
+
+.widthcol6{
+    width: 25%;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+  
+
+
+.demo-table {
+  width: 100%;
+}
+
+
+@media only screen and (max-width: 482px) {
+    /* horizontal scrollbar for tables if mobile screen */
+    .tablemobile {
+        overflow-x: auto;
+        display: block;
+    }
+    .customClass
+    {
+        padding-left: 6%;
+         padding-right: 5%;
+          padding-top: 2%;
+           width: auto
+    }
+} 
+
+
+h3
+{
+  text-align:center; 
+}
+
+img {
+  height: 150px;
+  width: 150px;
+  
+}
+a{
+    text-decoration: none;
+  }
+
+  
+  a:hover{
+    text-decoration: underline;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+   
+  
+  }
+  
+  th {
+    border-bottom: 1px solid #000;
+    background-color:#ABCFE6;
+    color: black;
+  }
+  td{
+     border-bottom: 1px solid #000;  
+  }
+  
+  td{ 
+    padding: 20px 0;
+    text-align: center;
+    border: 1px solid lightgray;
+  }
+  
+  tr {
+    background: #fff;
+  }
+  
+  th{
+    border-bottom: 1px solid #000;
+    background-color:#ABCFE6;
+    color: black;
+    font-size: 1vw;
+    border: 1px solid #000;
+    text-align: center;
+  }
+  
+   
+  mat-header-cell{
+    border-bottom: 1px solid #000;
+    background-color:#ABCFE6;
+    color: black;
+    font-size: 0.9vw;
+    text-align: center !important;
+  
+  }
+  
+  mat-header-cell, mat-cell {
+    justify-content: center;
+  }
+  mat-cell ,td { 
+    font-size: 0.9vw;
+    text-align: center !important;
+    border: 1px solid lightgray;
+  }
+.mat-input-element {
+  font: inherit;
+  background: none !important;
+}
+
+th{
+  color: red;
+}

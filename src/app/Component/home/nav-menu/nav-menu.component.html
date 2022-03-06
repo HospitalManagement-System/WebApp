@@ -63,6 +63,16 @@
           Register Nurse
         </a>
         <a
+        class="companyName"
+        [routerLink]="['BedAllotment']"
+        routerLinkActive="router-link-active"
+        *ngIf="isAdmin"
+        (click)="setTitle('Bed Allotment')"
+        mat-button
+      >
+      Bed Allotment
+      </a>
+        <a
           mat-button
           class="companyName"
           [routerLink]="['ViewPhysician']"
@@ -299,6 +309,7 @@
       >
         Calendar
       </a>
+     
     </div>
   </mat-sidenav>
 </div>

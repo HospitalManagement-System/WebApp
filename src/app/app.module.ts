@@ -72,6 +72,7 @@ import { UserService } from './Services/Userservice/userservice/user.service';
 import { DynamicViewComponent } from './Component/nurse/dynamic-view/dynamic-view.component';
 import { EditDailogeComponent } from './Component/nurse/dailoge/edit-dailoge/edit-dailoge.component';
 import { PatientDashboardComponent } from './Component/patient/patient-dashboard/patient-dashboard.component';
+import { BedAllotmentComponent } from './Component/shared/bed-allotment/bed-allotment.component';
 //fakebackend
 
 // used to create fake backend
@@ -177,8 +178,8 @@ import { CurrentPatientComponent } from './Component/physician/CurrentPatient/cu
     AdminDashboardComponent,
     ChangepasswordComponent,
     UpcomingAppointmentComponent,
-    PatientDynamicTableComponent
-
+    PatientDynamicTableComponent,
+    BedAllotmentComponent,
   ],
   imports: [
     HttpClientModule,

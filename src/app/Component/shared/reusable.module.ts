@@ -34,7 +34,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PatientDynamicTableComponent } from './patientdynamic-table/patientdynamic-table.component';
 
-import { SubscriptionComponent } from './subscription/subscription.component'; // a plug
+
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { BedAllotmentComponent } from './bed-allotment/bed-allotment.component'; // a plug
+
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -50,7 +53,8 @@ FullCalendarModule.registerPlugins([
     CalendarComponent,
     InboxComponent,
     SubscriptionComponent,
-    PatientDynamicTableComponent
+    PatientDynamicTableComponent,
+    BedAllotmentComponent,
   ],
   imports: [
     CommonModule,

@@ -32,6 +32,7 @@ import { PreviouspatientvisitdetailsComponent } from './Component/patient/previo
 import { CurrentPatientComponent } from './Component/physician/CurrentPatient/current-patient.component';
 //import { NavMenuComponent } from './Component/nav-menu/nav-menu.component';
 import { PhysicianComponent } from './Component/physician/physician.component';
+import { BedAllotmentComponent } from './Component/shared/bed-allotment/bed-allotment.component';
 import { BookAppointmentComponent } from './Component/shared/book-appointment/book-appointment.component';
 import { CalendarComponent } from './Component/shared/calendar/calendar.component';
 import { InboxComponent } from './Component/shared/inbox/inbox.component';
@@ -296,6 +297,12 @@ const routes: Routes = [
     component: ChangepasswordComponent,
     path: 'Changepassword',
     //canActivate: [AuthGuard],
+  },
+  {
+    component: BedAllotmentComponent,
+    path: 'BedAllotment',
+    // canActivate: [AuthGuard],
+    // data: { roles: [Role.Admin] },
   },
   { path: '**', redirectTo: '' },
 ];

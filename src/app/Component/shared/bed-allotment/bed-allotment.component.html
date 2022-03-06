@@ -1,0 +1,9 @@
+<h1>Layout for Bed Mangement</h1>
+<button (click)="AddFloor()">Add floor</button>
+<button (click)="Save()">Save</button>
+<div id="floorDiv" *ngFor="let n1 of floors;let i = index;">Floor{{i}}<span *ngIf="isAdmin"><i (click)="AddRoom(i)" class="fas fa-plus"></i><i (click)="removeFloor(i)" class="fas fa-minus"></i></span>
+    <div id="roomDiv" *ngFor="let n2 of floors[i].rooms;let j = index;">Room{{j}}<span *ngIf="isAdmin"><i (click)="AddBed(i,j)" class="fas fa-plus"></i><i (click)="removeRoom(i,j)" class="fas fa-minus"></i></span>
+        <div id="bedDiv" *ngFor="let n3 of floors[i].rooms[j].beds;let k = index;">Bed{{k}} <span *ngIf="isAdmin"><i (click)="removeBed(i,j,k)" class="fas fa-minus"></i></span><span *ngIf="!isAdmin"><i (click)="AllocateBed(i,j,k)" class="fas fa-plus"></i></span>
+        </div>
+    </div>
+</div>

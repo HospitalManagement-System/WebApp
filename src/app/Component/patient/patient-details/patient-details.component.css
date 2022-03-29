@@ -1,0 +1,56 @@
+.expansionpanel
+{
+    background-color:cornflowerblue !important;
+}
+.formsesign
+{
+    margin: right 30px;
+}
+/* .radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  
+  .radio-button {
+    margin: 5px;
+  } */
+  .additional-selection{
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+ 
+
+button
+{
+  margin-right: 5%;
+}
+mat-expansion-panel
+{
+  padding-left: 5%;
+}
+mat-form-field
+{
+  width: 90%;
+}
+mat-radio-button{
+  margin-left: 5%;
+}
+.nextBtn{
+  text-align: right;
+}
+.textcolor{
+  color:white;
+  background-color: lightgreen;
+
+}
+.textcolor1
+{
+  color:white;
+  background-color:blue;
+}
+.textcolor2
+{
+  color:white;
+  background-color:red;
+}

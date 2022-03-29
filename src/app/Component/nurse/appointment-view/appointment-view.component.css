@@ -1,0 +1,236 @@
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~material-design-icons/iconfont/material-icons.css'; */
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.fixed {
+  table-layout: fixed;
+}
+
+.square {
+  height: 200px;
+  width: 200px;
+  background-color: #E0E0E0;
+  border: 2px solid;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  color: rebeccapurple;
+}
+
+.mat-table {
+  overflow: auto;
+  font-family: "Open Sans", sans-serif 
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+  color:darkslateblue;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: navy;
+}
+
+
+.mat-cell:nth-child(4),
+.mat-header-cell:nth-child(4) {
+  
+}
+
+.mat-cell:nth-child(5),
+.mat-header-cell:nth-child(5) {
+ 
+}
+
+.mat-sort-header-container {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+:host ::ng-deep.mat-paginator .mat-paginator-container {
+  justify-content: flex-start !important;
+  display: flex !important;
+  align-items: center !important;
+  min-height: 46px !important;
+  padding: 0 8px;
+  flex-wrap: wrap-reverse;
+  width: 100%;
+  font-size: 14px !important;
+  font-family: "Open Sans", sans-serif !important;
+}
+
+.btn {
+  text-transform: none;
+}
+
+.mat-sort-header-button {
+  font-size: larger !important;
+  font-weight: bold !important;
+
+}
+.highlight{
+  color: white;
+  background: #673AB7;
+}
+.input-txt {
+  padding: 30px;
+  font-size: 40px;
+}
+
+.mat-column-name {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 10% !important;
+  width: 28% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-diagnosis {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 10% !important;
+  width: auto !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-physician {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 10% !important;
+  width: 28% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-mobile {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 10% !important;
+  width: auto !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+
+mat-cell > span.ellipsis {
+   text-overflow: ellipsis; 
+   overflow: hidden; 
+   white-space: nowrap;
+}
+.mat-column-edit {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 10% !important;
+  width: auto !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+mat-header-cell, mat-cell {
+  justify-content: center;
+}
+mat-cell ,td { 
+  font-size: 0.9vw;
+  text-align: center !important;
+  border: 1px solid lightgray;
+}
+
+
+
+table {
+width: 100%;
+border-collapse: collapse;
+
+
+}
+
+th {
+border-bottom: 1px solid #000;
+background-color:#ABCFE6;
+color: black;
+}
+td{
+ border-bottom: 1px solid #000;  
+}
+
+td{ 
+padding: 20px 0;
+text-align: center;
+border: 1px solid lightgray;
+}
+
+tr {
+background: #fff;
+}
+
+th{
+border-bottom: 1px solid #000;
+background-color:#ABCFE6;
+color: black !important;
+font-size: 1vw;
+border: 1px solid #000;
+text-align: center;
+}
+
+
+mat-header-cell{
+border-bottom: 1px solid #000;
+background-color:#ABCFE6;
+color: black !important;
+font-size: 0.9vw;
+text-align: center !important;
+
+}
+
+mat-header-cell, mat-cell {
+justify-content: center;
+}
+mat-cell ,td { 
+font-size: 0.9vw;
+text-align: center !important;
+border: 1px solid lightgray;
+}

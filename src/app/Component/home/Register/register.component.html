@@ -1,0 +1,325 @@
+<section class="vh-100 gradient-custom">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-8 col-lg-5 col-xl-5">
+        <!-- <img class="w-75"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvFcQ7_ae2_tLfUIHm0FBZnKWg0PARCDpr-g&usqp=CAU"> -->
+      </div>
+      <div class="col-md-8 col-lg-7 col-xl-7">
+        <div class="card auth">
+          <div class="card-body auth-card">
+            <form [formGroup]="registrationform" (submit)="onSubmit()">
+              <!-- <span
+                alt="user"
+                class="user-image text-center text-white"
+                style="margin-bottom: 1rem"
+                ><h3 class="">Register</h3></span
+              > -->
+              <h1
+                class="text-black font-bold text-center"
+                style="color: cornflowerblue; font-weight: bold"
+              >
+                Registration Form
+              </h1>
+
+              <div class="form-group row">
+                <div class="col-6">
+                  <label for="name">Title : </label>
+                  <select
+                    formControlName="Title"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        this.registrationform.controls['Title'].errors
+                    }"
+                  >
+                    <option value="Mr">Mr</option>
+                    <option value="Ms">Ms</option>
+                    <option value="Mrs">Mrs</option>
+                  </select>
+
+                  <div class="text-danger">
+                    <span
+                      *ngIf="
+                        (this.registrationform.controls['Title']?.touched &&
+                          this.registrationform.controls['Title']?.value ===
+                            '') ||
+                        (submitted &&
+                          this.registrationform.controls['Title']?.untouched &&
+                          this.registrationform.controls['Title']?.value === '')
+                      "
+                      >Title is required</span
+                    >
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <label for="name">First Name : </label>
+                  <input
+                    type="text"
+                    name="First Name"
+                    class="form-control"
+                    formControlName="FirstName"
+                  />
+                  <div class="text-danger">
+                    <span
+                      *ngIf="
+                  
+                      this.registrationform.controls['FirstName']?.errors?.['pattern'] &&
+                      this.registrationform.controls['FirstName']?.touched"
+                      >First Name is invalid</span
+                    >
+                    <span
+                      *ngIf="
+                        (this.registrationform.controls['FirstName']?.touched &&
+                          this.registrationform.controls['FirstName']?.value ===
+                            '') ||
+                        (submitted &&
+                          this.registrationform.controls['FirstName']
+                            ?.untouched &&
+                          this.registrationform.controls['FirstName']?.value ===
+                            '')
+                      "
+                      >First Name is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-6">
+                  <label for="name">Last Name : </label>
+                  <input
+                    type="text"
+                    name="Last name"
+                    class="form-control"
+                    formControlName="LastName"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        this.registrationform.controls['LastName'].invalid
+                    }"
+                  />
+                  <div class="text-danger">
+                    <span
+                      *ngIf="
+                      
+                      this.registrationform.controls['LastName'].invalid
+                      && this.registrationform.controls['LastName']?.errors?.['pattern']
+                      && this.registrationform.controls['LastName']?.status === 'INVALID'
+                      && this.registrationform.status === 'INVALID'
+
+                    "
+                      >Last Name is invalid</span
+                    >
+
+                    <span
+                      *ngIf="
+                        (this.registrationform.controls['LastName']?.touched &&
+                          this.registrationform.controls['LastName']?.value ===
+                            '') ||
+                        (submitted &&
+                          this.registrationform.controls['LastName']
+                            ?.untouched &&
+                          this.registrationform.controls['LastName']?.value ===
+                            '')
+                      "
+                      >Last Name is required</span
+                    >
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <label for="name">EmailId : </label>
+                  <input
+                    type="text"
+                    name="EmailId"
+                    class="form-control"
+                    formControlName="Email"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        this.registrationform.controls['Email'].invalid
+                    }"
+                  />
+                  <div class="text-danger">
+                    <span
+                      *ngIf="registrationform.controls['Email']?.errors?.['email'] && registrationform.controls['Email']?.touched"
+                      >Enter email in correct format</span
+                    >
+                    <span
+                      *ngIf="
+                        (this.registrationform.controls['Email']?.touched &&
+                          this.registrationform.controls['Email']?.value ===
+                            '') ||
+                        (submitted &&
+                          this.registrationform.controls['Email']?.untouched &&
+                          this.registrationform.controls['Email']?.value === '')
+                      "
+                      >Email is required</span
+                    >
+                  </div>
+                </div>
+                <!-- <div class="col-6">
+                  <label for="name">User Name : </label>
+                  <input
+                    type="text"
+                    name="User Name "
+                    class="form-control"
+                    formControlName="UserName"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        this.registrationform.controls['UserName'].invalid
+                    }"
+                  />
+                  <div class="text-danger">
+                    <span
+                      *ngIf="
+                      submitted &&
+                      this.registrationform.controls['UserName'].invalid
+                      && this.registrationform.controls['UserName']?.errors?.['pattern']
+                      && this.registrationform.controls['UserName']?.status === 'INVALID'
+                      && this.registrationform.status === 'INVALID'
+                    "
+                      >User Name is invalid</span
+                    >
+                    <span
+                      *ngIf="
+                        (this.registrationform.controls['UserName']?.touched && this.registrationform.controls['UserName']?.value === '')
+                        || (submitted && this.registrationform.controls['UserName']?.untouched
+                        && this.registrationform.controls['UserName']?.value === '')
+                      "
+                      >User Name is required</span
+                    >
+                  </div>
+                </div> -->
+              </div>
+
+              <div class="form-group row">
+                <div class="col-6">
+                  <label for="name">Contact : </label>
+                  <input
+                    type="text"
+                    name="phone"
+                    class="form-control"
+                    formControlName="PhoneNo"
+                    maxlength="10"
+                    minlength="10"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        this.registrationform.controls['PhoneNo'].invalid
+                    }"
+                  />
+                  <div class="text-danger">
+                    <span
+                      *ngIf="
+                      submitted &&
+                      this.registrationform.controls['PhoneNo'].invalid
+                      && this.registrationform.controls['PhoneNo']?.errors?.['pattern']
+                      && this.registrationform.controls['PhoneNo']?.status === 'INVALID'
+                      && this.registrationform.status === 'INVALID'
+                    "
+                      >Contact is invalid</span
+                    >
+                    <span
+                      *ngIf="registrationform.controls['PhoneNo']?.errors?.['minlength']"
+                      >Contact number has XX Digits
+                    </span>
+                    <span
+                      *ngIf="registrationform.controls['PhoneNo']?.errors?.['maxlength']"
+                      >Contact number has XX Digits
+                    </span>
+                    <mat-error
+                      *ngIf="registrationform.controls['PhoneNo']?.errors?.['pattern']"
+                      >Only numbers are allowed
+                    </mat-error>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <label for="name">Date of birth : </label>
+                  <input
+                    type="date"
+                    name="Date of birth"
+                    class="form-control"
+                    max="2022-02-04"
+                    formControlName="DateOfBirth"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        this.registrationform.controls['DateOfBirth'].invalid
+                    }"
+                  />
+                  <div class="text-danger">
+                    <span
+                      *ngIf="
+                        (this.registrationform.controls['DateOfBirth']
+                          ?.touched &&
+                          this.registrationform.controls['DateOfBirth']
+                            ?.value === '') ||
+                        (submitted &&
+                          this.registrationform.controls['DateOfBirth']
+                            ?.untouched &&
+                          this.registrationform.controls['DateOfBirth']
+                            ?.value === '')
+                      "
+                      >DateOfBirth is required</span
+                    >
+                    <span
+                      *ngIf="this.registrationform.controls['DateOfBirth']?.errors?.['matDatepickerMax']"
+                      >Date should be inferior
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="form-group row">
+                            <div class="col-6">
+                              <label for="name">Password: </label>
+                              <input
+                                type="password"
+                                class="form-control"
+                                placeholder="Password"
+                                formControlName="Password"
+                              />
+                            </div>
+                            <div class="col-6">
+                              <label for="name">Confirm-Password: </label>
+                              <input
+                                type="password"
+                                name="Confirm-Password: "
+                                class="form-control"
+                                placeholder="Confirm-Password: "
+                                formControlName="ConfirmPassword"
+                              />
+                         
+                            </div>
+                          </div> -->
+              <!-- </div> -->
+
+              <!-- <div class="form-group row">
+               
+              </div> -->
+
+              <div
+                class="align-items-center text-center justify-content-center"
+                style="width: 100px"
+              >
+                <div>
+                  <button type="submit" class="btn btn-success">Sign Up</button>
+                </div>
+              </div>
+
+              <div class="align-items-center text-center login">
+                Already have an account ? <a routerLink="/">Login</a> here.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

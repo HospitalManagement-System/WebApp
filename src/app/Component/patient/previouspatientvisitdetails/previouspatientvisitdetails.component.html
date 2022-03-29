@@ -1,0 +1,13 @@
+<div label="All Products">
+    <div *ngIf="allResults">
+      <app-dynamic-table
+        [receivedData]="Data"
+        [columns]="columns"
+        tableTitle="Patient Visit Details"
+        [metaCount]="metaCount"
+        (clickedItem)="viewItem($event)"
+        (pageEvent)="updatePagination($event)"
+      >
+      </app-dynamic-table>
+    </div>
+  </div>

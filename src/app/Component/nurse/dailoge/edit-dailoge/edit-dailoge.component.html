@@ -1,0 +1,57 @@
+<div class="container">
+  <form class="mat-dialog-content" #formControl="ngForm" style="background-color: white;" [formGroup]="registerForm">
+  <h3>Edit Appointment Details</h3>
+        <div class="form">
+            <mat-form-field >
+                <input matInput #input class="form-control" placeholder="Name" formControlName="name">    
+                                     
+              </mat-form-field>
+          </div>        
+          <div class="form">
+            <mat-form-field >
+              <input matInput #input class="form-control" placeholder="Gender" formControlName="gender" >             
+            </mat-form-field>
+            &nbsp; &nbsp; &nbsp;
+            <mat-form-field >
+                <input matInput #input class="form-control" placeholder="Mobile"  formControlName="contact">             
+              </mat-form-field>
+          </div>
+          <div class="form" style="font-size: medium;">
+            <mat-form-field >
+               
+               <mat-select
+                  formControlName="bookslot" placeholder="BookedSlot"
+                >
+                  <mat-option>Select</mat-option>
+                  <mat-option
+                    *ngFor="let item of firstslot"
+                    [value]="item"
+                  >
+                    {{ item }}</mat-option
+                  >
+                </mat-select>
+               
+              </mat-form-field>
+              &nbsp; &nbsp; &nbsp;
+              <mat-form-field >
+               
+                <input matInput #input class="form-control" placeholder="Physician" formControlName="physician" >             
+                </mat-form-field>
+          </div>
+          <div class="form">
+            <mat-form-field >
+                <input matInput #input class="form-control" placeholder="DateOfAppointment" formControlName="appointmentDateTime" required >             
+              </mat-form-field>
+              &nbsp; &nbsp; &nbsp;
+              <mat-form-field>
+                  <input matInput #input class="form-control" placeholder="Diagnosis"  formControlName="diagnosis"  >             
+                </mat-form-field>
+          </div>
+          
+          <div mat-dialog-actions>
+            <button mat-button class="btn btn-success"  [mat-dialog-close]="1" [disabled]="!registerForm.valid"  (click)=submit()>Save</button>
+            <button mat-button class="btn btn-primary" (click)="onNoClick()" tabindex="-1">Cancel</button>
+          </div>      
+    </form>
+  </div>
+  

@@ -1,0 +1,30 @@
+mat-toolbar-row, .mat-toolbar-single-row {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    background-color:rgb(81, 133, 247);
+    padding: 10px;
+}
+
+.example-spacericon {
+    flex: 1 1 auto;
+  }
+body{
+    margin: 0px;
+}
+button{
+    padding: 5px;
+    background: none;
+    border: 0px;
+    color: white;
+    font-size: medium;
+}
+
+button:focus {
+    outline: none;
+}
+
+

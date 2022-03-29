@@ -1,0 +1,29 @@
+mat-form-field {
+  width: 40%;
+}
+mat-expansion-panel {
+  width: 90%;
+}
+
+button {
+  margin: 2%;
+}
+span {
+  margin-right: 10%;
+}
+
+.inline {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+mat-form-field.border-red ::ng-deep .mat-form-field-outline {
+  color: red !important;
+}
+mat-form-field.border-red ::ng-deep .mat-form-field-label {
+  color: red !important;
+}
+
+.special-date {
+  background-color: red;
+}

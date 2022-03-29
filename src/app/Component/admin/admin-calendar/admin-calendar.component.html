@@ -1,0 +1,104 @@
+<div class="demo-app">
+  <div class="demo-app-sidebar">
+    <div class="demo-app-main" id="calendar">
+      <full-calendar
+        *ngIf="calendarVisible"
+        [options]="calendarOptions"
+        style="
+          height: 400px;
+          padding-left: 10px;
+          padding-right: 10px;
+          margin-top: 15px;
+        "
+      ></full-calendar>
+      <!-- <full-calendar #calendar [options]="calendarOptions"></full-calendar> -->
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{ name }}</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          (click)="hide()"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">Event Start From : {{ date }}</div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-dismiss="modal"
+          (click)="hide()"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal"
+  id="myModal"
+  [style.display]="ApproveModal ? 'block' : 'none'"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{ name }}</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          (click)="Approvehide()"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <p>Patient:{{ Patient }}</p>
+        <p>Diagnosics:{{ Diagnosics }}</p>
+        <p>Physician:{{ Physician }}</p>
+        <p>Description:{{ Description }}</p>
+        <p>Event Start From : {{ date }}</p>
+      </div>
+
+      <!-- Modal footer -->
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-success"
+          data-dismiss="modal"
+          (click)="Approvehide()"
+        >
+          Approve
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-dismiss="modal"
+          (click)="Approvehide()"
+        >
+          Reject
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

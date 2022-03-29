@@ -1,0 +1,65 @@
+.login{
+  color: #fff;
+}
+
+.auth-card{
+  background:#fff;  /* fallback for old browsers */
+  border:1px solid #ddd;
+  border-radius: 5px;
+  vertical-align: middle;
+  }
+
+
+
+.login a{
+  color: #d39e00;
+  font-weight: 600;
+  text-decoration: none;
+}
+/* Add application styles & imports to this file! */
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+@import url('../node_modules/simple-keyboard/build/css/index.css');
+
+label{
+color: #fff;
+font-weight: 700;
+}
+.user-image{
+height: 70px;
+}
+.auth-avatar{
+text-align: center;
+margin-top: -50px;
+}
+.auth{
+margin-top: 35px;
+border: none;
+border-radius: 6px;
+}
+.btn-my{
+  background-color:#fff;
+  border: 1px solid black!important;
+  color:#5B9ED7 ;
+  font-weight: 700;
+  }
+.simple-keyboard {
+max-width: 850px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+  border-bottom: none;
+  padding: 1px;
+}
+
+
+section
+{
+  background-image: url("../../../../assets/Images/Bg6.jpg");
+  align-items: center;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+

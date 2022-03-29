@@ -1,0 +1,92 @@
+
+<h2 class="p-2">Upcoming Patient Appointment Details</h2>
+
+<div class="example-container mat-elevation-z8 m-2" class="table-content" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden;">
+  <mat-form-field class="pl-3" style="width: 50%" >
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search Here">
+  </mat-form-field>
+  <div class="spinner-container">
+  </div>
+
+  <mat-table #table [dataSource]="dataSource1"  >
+
+    <ng-container matColumnDef="id"  [style.display]="'none'">
+      <mat-header-cell *matHeaderCellDef [style.display]="'none'" mat-sort-headerstyle="font-size: medium;" style="font-size: medium;"> Id
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" [style.display]="'none'" matTooltip="id"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Second Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;" style="font-size: medium;"> Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" matTooltip={{element.name}}><span class="ellipsis">{{element.name}}</span> </mat-cell>
+    </ng-container>
+
+    <!-- Third Column -->
+    <ng-container matColumnDef="gender">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;"> Gender </mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.gender}}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Fourth Column -->
+    <ng-container matColumnDef="diagnosis">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;"> Diagnosis Reason </mat-header-cell>
+      <mat-cell *matCellDef="let element" matTooltip={{element.diagnosis}}><span class="ellipsis">{{element.diagnosis}}</span> </mat-cell>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="mobile">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;"> Mobile </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.contact}} </mat-cell>
+    </ng-container>
+    <!-- Action Column -->
+    <ng-container matColumnDef="bookslot">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;"> BookedSlot </mat-header-cell>
+      <mat-cell *matCellDef="let element" > {{element.bookSlot}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="appointmentdatetime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header  style="font-size: medium;"> Date Of Appointment </mat-header-cell>
+      <mat-cell *matCellDef="let element" matTooltip={{element.appointmentDateTime}}><span class="ellipsis">{{element.appointmentDateTime|date:'shortDate'}}</span> </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="physician">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;"> Physician </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.physicanName}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;"> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let element"> <button mat-icon-button class="iconbutton"
+          color="primary" (click)="startEdit(element)">
+          <mat-icon matTooltip="Click To Edit Details"> perm_identity </mat-icon>
+        </button> </mat-cell>
+    </ng-container>
+    <!-- <ng-container matColumnDef="pastvisit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;">  </mat-header-cell>
+      <mat-cell *matCellDef="let element" >
+         <button mat-icon-button class="iconbutton"
+          color="primary" (click)="OnProviousVisit()">
+          <mat-icon matTooltip="Previous Visit Details"> history </mat-icon>
+        </button> </mat-cell>
+    </ng-container> -->
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: medium;"> Delete
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> <button mat-icon-button matTooltip="Click To Cancel Appointment" class="iconbutton"
+          color="warn" (click)="onDelete(element.id)">
+          <mat-icon> cancel </mat-icon>
+        </button> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+  <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+  </mat-paginator>
+
+
+
+</div>

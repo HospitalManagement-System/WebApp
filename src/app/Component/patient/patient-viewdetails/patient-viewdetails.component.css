@@ -1,0 +1,38 @@
+mat-expansion-panel
+{
+    width:90%;
+}
+
+button
+{
+  margin-right: 5%;
+}
+mat-expansion-panel
+{
+  padding-left: 5%;
+}
+mat-form-field{
+  width: 90%;
+}
+
+.mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  mat-radio-button{
+    margin-left: 3%;
+  }   
+  .textcolor{
+    color:white;
+    background-color: lightgreen;
+  
+  }
+  .textcolor1
+  {
+    color:white;
+    background-color:blue;
+  }
+  .textcolor2
+  {
+    color:white;
+    background-color:red;
+  }

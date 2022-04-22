@@ -1,0 +1,27 @@
+export class postpatientdemographics
+{
+   Id!: string;
+        FirstName: string="";
+        LastName!: string;
+        DateofBirth!: Date;
+        Age!: number;
+        Gender!: boolean;
+        Race!: string;
+        Ethinicity!: string;
+        //languagesknown!: string;
+        Email!: string;
+        Address!: string;
+        Pincode!: number;
+        Country!: string;
+        State!: string;
+        Contact!: string;
+        AllergynameList!:string;
+        AllergytypeList!:string;
+        ClinicalInformation!:string;
+        IsFatal!: boolean;
+        PatientId!:string;
+        PatientDetails!:string;
+        Createddate!:Date;
+        AllergyDetails!:string;
+       // patientRelativeDetails!: Patientrelativedetails ;
+}

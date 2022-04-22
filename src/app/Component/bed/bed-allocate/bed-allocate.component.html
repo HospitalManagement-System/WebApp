@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>
+  <h1 *ngIf="data.fromType==1">Filter for</h1>
+  <h1 *ngIf="data.fromType==2">Details Of</h1>
+</h1>
+<div mat-dialog-content>
+  <div *ngIf="(bedManagement.bed != -1 || data.fromType==1)" style="display: inline-block;">
+    <mat-form-field appearance="fill">
+      <mat-label>Bed Type</mat-label>
+      <select matNativeControl [(ngModel)]="bedManagement.bedType">
+        <option value="-1" selected></option>
+        <option *ngFor="let bedtype of bedEnums" [value]="bedtype.key">
+          {{bedtype.value}}
+        </option>
+      </select>
+    </mat-form-field>
+  </div>
+  <div *ngIf="((bedManagement.room != -1 && bedManagement.bed == -1) || data.fromType==1 )" style="display: inline-block;">
+    <mat-form-field appearance="fill">
+      <mat-label>Room Type</mat-label>
+      <select matNativeControl [(ngModel)]="bedManagement.roomType">
+        <option value="-1" selected></option>
+        <option *ngFor="let roomtype of roomEnums" [value]="roomtype.key">
+          {{roomtype.value}}
+        </option>
+      </select>
+    </mat-form-field>
+  </div>
+  <mat-slide-toggle [(ngModel)]="bedManagement.isAvilable" style="margin-top: 20px;">is Avilable</mat-slide-toggle>
+  <mat-form-field appearance="fill">
+    <mat-label>Name : </mat-label>
+    <input matInput placeholder="name" [(ngModel)]="bedManagement.fullName">
+  </mat-form-field>
+  <div *ngIf="data.fromType==1" style="display: inline-block;">
+  <mat-form-field appearance="fill">
+    <mat-label></mat-label>
+    <select matNativeControl [(ngModel)]="FilterAndOr">
+      <option value="1" selected>And</option>
+      <option value="2" selected>Or</option>
+    </select>
+  </mat-form-field>
+</div>
+</div>
+<div mat-dialog-actions style="float: right;">
+  <button mat-raised-button color="primary" (click)="Apply()"> {{data.fromType==2 ? "Save" : "Filter"}} </button>
+</div>

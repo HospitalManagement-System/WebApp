@@ -1,0 +1,92 @@
+.floorDiv {
+  width: 100%;
+  height: 100%;
+  margin: 0px 0px 40px 0px;
+  border: 1px solid black;
+}
+
+.roomDiv {
+  width: 100%;
+  height: 100%;
+  margin: 10px 0px 0px 0px;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.bedDiv {
+  width: 100px;
+  height: 100%;
+  margin: 10px 0 0 10px;
+  transition: all 100ms ease-in-out;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border: 2px solid green;
+  border-radius: 10px;
+}
+
+#mainDiv {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 2em 0em;
+}
+
+.bedDivicon {
+  width: 12px;
+  height: 30px;
+  margin: 0 10px;
+  border: 2px solid green;
+  border-radius: 10px;
+  display: inline-flex;
+  background-color: white;
+}
+
+#iconId {
+  max-width: 25px;
+}
+
+img {
+  width: 24px;
+  height: 20px;
+}
+
+.selected {
+  background-color: green;
+}
+
+.selected #nameSpan{
+  color: white;
+}
+
+
+#showDiv {
+  height: 100%;
+  width: 100%;
+}
+
+#nameSpan {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  font-weight: 500;
+  text-align: center;
+}
+
+i.fas{
+  margin: 6px;
+}
+i.lg-icon{
+  font-size: 30px;
+  margin-left: 16px;
+}
+
+
+.bedDiv:hover {
+  transform: scale(1.2);
+}

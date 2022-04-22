@@ -1,0 +1,424 @@
+<div style="margin-left: 3px">
+  <mat-card-content>
+    <div class="container">
+      <div
+        fxLayout="row"
+        fxFlex="1 0 0"
+        fxLayoutGap="0px"
+        fxLayputAlign="center center"
+      >
+        <div>
+          <div fxLayout="column" style="margin-top: 2%">
+            <div fxFlex="30" class="flex-p"></div>
+            <div fxFlex="50" class="flex-p">
+              <mat-accordion>
+                <mat-card>
+                  <p><b>Visit Details</b></p>
+
+                  <mat-stepper orientation="vertical" [linear]="false" #stepper>
+                    <mat-step>
+                      <div class="row">
+                        <form [formGroup]="nurseform">
+                          <ng-template matStepLabel>Vital Sign</ng-template>
+                          <span class="col-md-6">
+                            <mat-form-field
+                              appearance="outline"
+                              class="form-group"
+                            >
+                              <mat-label>Height</mat-label>
+                              <input
+                                type="number"
+                                matInput
+                                placeholder="Height(in cm)"
+                                formControlName="height"
+                                max="250"
+                                min="0"
+                              />
+
+                              <mat-error
+                                *ngIf="(nurseform.controls['height']?.errors?.['required'] && nurseform.controls['height']?.touched) || nurseform.controls['height']?.errors?.['maxlength']"
+                              >
+                                Please provide patient height in cms.
+                              </mat-error>
+                              <mat-error
+                                *ngIf="(nurseform.controls['height']?.errors?.['max'] && nurseform.controls['height']?.touched) || nurseform.controls['height']?.errors?.['maxlength']"
+                              >
+                                Please check patient height and provide the data
+                                in cms
+                              </mat-error>
+                            </mat-form-field>
+                          </span>
+                          <span class="col-md-6">
+                            <mat-form-field
+                              appearance="outline"
+                              class="form-group"
+                            >
+                              <mat-label>Weight</mat-label>
+                              <input
+                                type="number"
+                                matInput
+                                placeholder="Weight(in kg)"
+                                formControlName="weight"
+                                min="0"
+                                max="200"
+                              />
+                              <mat-error
+                                *ngIf="nurseform.controls['weight']?.errors?.['required'] && nurseform.controls['weight']?.touched"
+                              >
+                                Please provide patient weight in kgs.
+                              </mat-error>
+                              <mat-error
+                                *ngIf="nurseform.controls['weight']?.errors?.['pattern'] && nurseform.controls['weight']?.touched"
+                              >
+                                Please provide patient weight in upto 2 decimal
+                                only.
+                              </mat-error>
+                              <mat-error
+                                *ngIf="(nurseform.controls['weight']?.errors?.['max'] && nurseform.controls['weight']?.touched) || nurseform.controls['weight']?.errors?.['maxlength']"
+                              >
+                                Please insert proper weight
+                              </mat-error>
+                            </mat-form-field>
+                          </span>
+                          <span class="col-md-6">
+                            <mat-form-field
+                              appearance="outline"
+                              class="form-group"
+                            >
+                              <mat-label>Blood-Pressure</mat-label>
+                              <input
+                                type="number"
+                                matInput
+                                placeholder="Blood-pressure(in mm/kg)"
+                                formControlName="bloodpressure"
+                                min="0"
+                              />
+                              <mat-error
+                                *ngIf="nurseform.controls['bloodpressure']?.errors?.['required'] && nurseform.controls['bloodpressure']?.touched"
+                              >
+                                Please provide patient bloodpressure.
+                              </mat-error>
+                            </mat-form-field>
+                          </span>
+                          <span class="col-md-6">
+                            <mat-form-field
+                              appearance="outline"
+                              class="form-group"
+                            >
+                              <mat-label>Body-Temprature</mat-label>
+                              <input
+                                type="number"
+                                matInput
+                                placeholder="Body-Temprature(in Faharenheit)"
+                                formControlName="bodytemprature"
+                                min="0"
+                                max="300"
+                              />
+                              <mat-error
+                                *ngIf="nurseform.controls['bodytemprature']?.errors?.['required'] && nurseform.controls['bodytemprature']?.touched"
+                              >
+                                Please provide patient bodytemprature.
+                              </mat-error>
+                              <mat-error
+                                *ngIf="(nurseform.controls['bodytemprature']?.errors?.['max'] && nurseform.controls['bodytemprature']?.touched) || nurseform.controls['bodytemprature']?.errors?.['maxlength']"
+                              >
+                                Please insert proper bodytemprature
+                              </mat-error>
+                            </mat-form-field>
+                          </span>
+                          <span class="col-md-6">
+                            <mat-form-field
+                              appearance="outline"
+                              class="form-group"
+                            >
+                              <mat-label>Respiration-Rate</mat-label>
+                              <input
+                                matInput
+                                type="number"
+                                placeholder="Respiration-Rate(in BPM)"
+                                formControlName="respirationrate"
+                                min="11"
+                                max="26"
+                              />
+                              <mat-error
+                                *ngIf="nurseform.controls['respirationrate']?.errors?.['required'] && nurseform.controls['respirationrate']?.touched"
+                              >
+                                Please provide patient respirationrate in BPM.
+                              </mat-error>
+                              <mat-error
+                                *ngIf="(nurseform.controls['respirationrate']?.errors?.['max'] && nurseform.controls['respirationrate']?.touched) || nurseform.controls['respirationrate']?.errors?.['maxlength']"
+                              >
+                                Respiration rate should below 22 BPM
+                              </mat-error>
+                            </mat-form-field>
+                          </span>
+
+                          <div>
+                            <button mat-button matStepperNext>Next</button>
+                          </div>
+                        </form>
+                      </div>
+                    </mat-step>
+
+                    <div>
+                      <form [formGroup]="physicianform">
+                        <mat-step>
+                          <div class="row">
+                            <ng-template matStepLabel
+                              >Diagnosis Details</ng-template
+                            >
+
+                            <span class="col-md-6">
+                              <ng-container
+                                *ngIf="Rolename == 'PHYSICIAN'; else deactivate"
+                              >
+                                <mat-form-field
+                                  appearance="outline"
+                                  class="form-group"
+                                >
+                                  <mat-label>Diagnosis Discription</mat-label>
+
+                                  <mat-select
+                                    placeholder="Basic"
+                                    [(value)]="selected"
+                                    formControlName="diagnosisdiscription"
+                                    multiple
+                                  >
+                                    <mat-select-filter
+                                      [array]="listOfdiagnosisdiscription"
+                                      (filteredReturn)="filteredList1 = $event"
+                                    >
+                                    </mat-select-filter>
+
+                                    <mat-option
+                                      *ngFor="let item of filteredList1"
+                                      [value]="item"
+                                    >
+                                      {{ item }}
+                                    </mat-option>
+                                  </mat-select>
+
+                                  <mat-error
+                                    *ngIf="physicianform.controls['diagnosisdiscription']?.errors?.['required'] && physicianform.controls['diagnosisdiscription']?.touched"
+                                  >
+                                    Please provide diagnosisdiscription.
+                                  </mat-error>
+                                </mat-form-field>
+                              </ng-container>
+                            </span>
+                            <span class="col-md-6">
+                              <ng-template #deactivate>
+                                <mat-form-field appearance="outline">
+                                  <mat-label>Diagnosis Discription</mat-label>
+                                  <input
+                                    type="text"
+                                    matInput
+                                    placeholder="Diagnosisdiscription"
+                                    formControlName="readdiagnosisdiscription"
+                                  />
+                                </mat-form-field>
+                              </ng-template>
+                            </span>
+                            <span class="col-md-6">
+                              <mat-form-field appearance="outline">
+                                <mat-label>Doctor Discription</mat-label>
+                                <input
+                                  type="text"
+                                  matInput
+                                  placeholder="Diagnosisdiscription"
+                                  formControlName="diagnosisdiscriptionifother"
+                                />
+                              </mat-form-field>
+                            </span>
+
+                            <div>
+                              <button mat-button matStepperPrevious>
+                                Back
+                              </button>
+                              <button mat-button matStepperNext>Next</button>
+                            </div>
+                          </div>
+                        </mat-step>
+
+                        <mat-step>
+                          <ng-template matStepLabel
+                            >Procedure Details</ng-template
+                          >
+
+                          <span>
+                            <ng-container
+                              *ngIf="Rolename == 'PHYSICIAN'; else procedure"
+                            >
+                              <mat-form-field
+                                appearance="outline"
+                                class="form-group"
+                              >
+                                <mat-label>Procedure Discription</mat-label>
+
+                                <mat-select
+                                  placeholder="Basic"
+                                  formControlName="procedurediscription"
+                                  multiple
+                                >
+                                  <mat-select-filter
+                                    [array]="listOfprocedurediscription"
+                                    (filteredReturn)="filteredList2 = $event"
+                                  ></mat-select-filter>
+                                  <mat-option
+                                    *ngFor="let item of filteredList2"
+                                    [value]="item"
+                                  >
+                                    {{ item }}
+                                  </mat-option>
+                                </mat-select>
+                                <mat-error
+                                  *ngIf="physicianform.controls['procedurediscription']?.errors?.['required'] && physicianform.controls['procedurediscription']?.touched"
+                                >
+                                  Please provide procedurediscription
+                                </mat-error>
+                              </mat-form-field>
+                            </ng-container>
+                          </span>
+                          <span>
+                            <ng-template #procedure>
+                              <mat-form-field appearance="outline">
+                                <mat-label>Procedure Discription</mat-label>
+                                <input
+                                  type="text"
+                                  matInput
+                                  placeholder="Procedurediscription"
+                                  [readonly]="true"
+                                  formControlName="readprodurediscription"
+                                />
+                              </mat-form-field>
+                            </ng-template>
+                          </span>
+
+                          <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+                          </div>
+                        </mat-step>
+
+                        <mat-step>
+                          <ng-template matStepLabel
+                            >Medication Details</ng-template
+                          >
+
+                          <span>
+                            <ng-container
+                              *ngIf="Rolename == 'PHYSICIAN'; else medication"
+                            >
+                              <mat-form-field
+                                appearance="outline"
+                                class="form-group"
+                              >
+                                <mat-label>Drug Name</mat-label>
+                                <mat-select formControlName="drugname" multiple>
+                                  <mat-select-filter
+                                    [array]="listOfmedication"
+                                    (filteredReturn)="filteredList3 = $event"
+                                  ></mat-select-filter>
+                                  <mat-option
+                                    *ngFor="let item of filteredList3"
+                                    [value]="item.drugName"
+                                  >
+                                    {{ item.drugName }}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </ng-container>
+                          </span>
+                          <span>
+                            <ng-template #medication>
+                              <mat-form-field
+                                appearance="outline"
+                                class="form-group"
+                              >
+                                <mat-label>Drug Name</mat-label>
+
+                                <input
+                                  type="text"
+                                  matInput
+                                  placeholder="Drug"
+                                  [readonly]="true"
+                                  formControlName="readdrug"
+                                />
+                              </mat-form-field>
+                            </ng-template>
+                          </span>
+
+                          <!-- <span>
+                            <mat-form-field appearance="outline" class="form-group">
+                              <mat-label>Drug BrandName</mat-label>
+                              <mat-select formControlName='drugbrandname'>
+
+                                 <mat-select-filter [array]="listOfmedication" (filteredReturn)="filteredList3 =$event"></mat-select-filter>
+                                <mat-option *ngFor="let item of listOfmedication" [value]="item.DrugBrandname"> 
+                                  {{item.DrugBrandname}}
+                                </mat-option>
+                              </mat-select>
+
+                            </mat-form-field>
+                          </span>
+
+                          <span>
+                            <mat-form-field appearance="outline" class="form-group">
+                              <mat-label>Drug Form</mat-label>
+
+                              <mat-select placeholder="Basic" multiple formControlName="drugform">
+                                 <mat-select-filter [array]="listOfmedication" (filteredReturn)="filteredList3 =$event"></mat-select-filter> -->
+                          <!-- <mat-option *ngFor="let item of listOfmedication" [value]="item.DrugForm">
+                                  {{item.DrugForm}}
+                                </mat-option> -->
+
+                          <!-- </mat-select>
+                              <mat-error
+                                *ngIf="physicianform.controls['drugform']?.errors?.['required'] && physicianform.controls['drugform']?.touched">
+                                Kindly provide responce.
+                              </mat-error>
+                            </mat-form-field>
+                          </span>  -->
+
+                          <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
+                          </div>
+                        </mat-step>
+                      </form>
+                    </div>
+                  </mat-stepper>
+                </mat-card>
+              </mat-accordion>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  <div>
+    <mat-card>
+      <div style="margin-left: 60%">
+        <button
+          mat-raised-button
+          (click)="Addupdatepatientdetails()"
+          class="textcolor"
+        >
+          Save
+        </button>
+
+        <button
+          mat-raised-button
+          (click)="updatepatientdetails()"
+          class="textcolor1"
+        >
+          update
+        </button>
+
+        <button mat-raised-button (click)="cleardata()" class="textcolor2">
+          Clear
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>

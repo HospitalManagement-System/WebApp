@@ -1,0 +1,376 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Add {{ Type }}</h1>
+        </div>
+        <!-- <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Advanced Form</li>
+          </ol>
+        </div> -->
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!-- SELECT2 EXAMPLE -->
+      <div class="card card-default">
+        <div class="card-header">
+          <h3 class="card-title">Add {{ Type }}</h3>
+
+          <div class="card-tools">
+            <button
+              type="button"
+              class="btn btn-tool"
+              data-card-widget="collapse"
+            >
+              <i class="fas fa-minus"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-tool"
+              data-card-widget="remove"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <form [formGroup]="Physician" (ngSubmit)="onSubmit()">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    formControlName="firstName"
+                    class="form-control"
+                    formControlName="firstName"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        this.Physician.controls['firstName'].invalid
+                    }"
+                  />
+
+                  <!-- <span
+                    style="color: red"
+                    *ngIf="
+                      name &&
+                      this.Physician.controls['firstName'].invalid &&
+                      name.touched &&
+                      submitted
+                    "
+                    >Enter First Name</span
+                  > -->
+                  <span
+                    style="color: red"
+                    *ngIf="
+                      submitted && this.Physician.controls['firstName'].invalid
+                    "
+                  >
+                    Please Enter First Name
+                  </span>
+                  <!-- <div
+                    *ngIf="submitted && f['fullname'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['fullname'].errors">Fullname is required</div>
+                  </div> -->
+                </div>
+
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Gender</label>
+                  <select
+                    class="custom-select"
+                    (change)="genderChange($event)"
+                    formControlName="Gender"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && this.Physician.controls['Gender'].invalid
+                    }"
+                  >
+                    <option value="" disabled>Select Gender</option>
+                    <option
+                      *ngFor="let gender of genderdata"
+                      [ngValue]="gender.value"
+                    >
+                      {{ gender.value }}
+                    </option>
+                  </select>
+                  <!-- <span
+                    *ngIf="
+                      gendererror &&
+                      this.Physician.controls['Gender'].invalid &&
+                      gendererror.touched
+                    "
+                    style="color: red"
+                    >Please Select Gender</span
+                  > -->
+                  <span
+                    *ngIf="
+                      submitted && this.Physician.controls['Gender'].invalid
+                    "
+                    style="color: red"
+                    >Please Select Gender</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input
+                    type="text"
+                    formControlName="Email"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && this.Physician.controls['Email'].invalid
+                    }"
+                  />
+                  <!-- <span
+                    *ngIf="
+                      emailerror &&
+                      this.Physician.controls['Email'].invalid &&
+                      emailerror.touched
+                    "
+                    style="color: red"
+                    >Please Enter Email</span
+                  > -->
+                  <span
+                    *ngIf="
+                      submitted && this.Physician.controls['Email'].invalid
+                    "
+                    style="color: red"
+                    >Please Enter Email</span
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Specialization</label>
+                  <!-- <select class="form-control select2" style="width: 100%">
+                    <option selected="selected">Gender</option>
+                  </select> -->
+                  <select
+                    class="custom-select"
+                    (change)="designationChange($event)"
+                    formControlName="designation"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        this.Physician.controls['designation'].invalid
+                    }"
+                  >
+                    <option value="" disabled>Select Specialization</option>
+                    <option
+                      *ngFor="let designation of designationdata"
+                      [ngValue]="designation.value"
+                    >
+                      {{ designation.value }}
+                    </option>
+                  </select>
+                  <span
+                    *ngIf="
+                      submitted &&
+                      this.Physician.controls['designation'].invalid
+                    "
+                    style="color: red"
+                    >Please Select Designation</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label>Education</label>
+                  <select
+                    class="custom-select"
+                    (change)="eduactionChange($event)"
+                    formControlName="education"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        this.Physician.controls['education'].invalid
+                    }"
+                  >
+                    <option value="" disabled>Select Education</option>
+                    <option
+                      *ngFor="let education of educationdata"
+                      [ngValue]="education.value"
+                    >
+                      {{ education.value }}
+                    </option>
+                  </select>
+                  <span
+                    *ngIf="
+                      submitted && this.Physician.controls['education'].invalid
+                    "
+                    style="color: red"
+                    >Please Select Education</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label>Upload Image</label>
+                  <span class="btn btn-success col fileinput-button">
+                    <i class="fas fa-plus"></i>
+                    <!-- <span>Upload Image</span> -->
+                    <input
+                      type="file"
+                      #file
+                      placeholder="Choose file"
+                      (change)="uploadFile(file.files)"
+                      style="display: none"
+                    />
+                    <button
+                      #test
+                      type="file"
+                      class="btn btn-success"
+                      (click)="file.click()"
+                    >
+                      Upload Image
+                    </button>
+                  </span>
+                  <!-- <span
+                    *ngIf="
+                      submitted && this.Physician.controls['image'].invalid
+                    "
+                    style="color: red"
+                    >Please Upload Image</span
+                  > -->
+                </div>
+                <div style="width: 100%">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    formControlName="lastName"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && this.Physician.controls['lastName'].invalid
+                    }"
+                  />
+                  <span
+                    *ngIf="
+                      submitted && this.Physician.controls['lastName'].invalid
+                    "
+                    style="color: red"
+                    >Please Enter Last Name</span
+                  >
+                </div>
+
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Mobile Number</label>
+                  <input
+                    type="number"
+                    formControlName="mobile"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && this.Physician.controls['mobile'].invalid
+                    }"
+                  />
+                  <span
+                    *ngIf="
+                      submitted && this.Physician.controls['mobile'].invalid
+                    "
+                    style="color: red"
+                    >Please Enter Mobile Number</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label>Date of Birth</label>
+                  <input
+                    type="date"
+                    formControlName="dob"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && this.Physician.controls['dob'].invalid
+                    }"
+                  />
+                  <span
+                    *ngIf="submitted && this.Physician.controls['dob'].invalid"
+                    style="color: red"
+                    >Please Select Date Of Birth</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label>Designation</label>
+                  <!-- <select class="form-control select2" style="width: 100%">
+                    <option selected="selected">Alabama</option>
+                  </select>
+                  <span style="color: red">Please Select Department</span> -->
+                  <select
+                    class="custom-select"
+                    (change)="departmentChange($event)"
+                    formControlName="department"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        this.Physician.controls['department'].invalid
+                    }"
+                  >
+                    <option value="" disabled>Select Designation</option>
+                    <option
+                      *ngFor="let department of departmentdata"
+                      [ngValue]="department.value"
+                    >
+                      {{ department.value }}
+                    </option>
+                  </select>
+                  <span
+                    *ngIf="
+                      submitted && this.Physician.controls['department'].invalid
+                    "
+                    style="color: red"
+                    >Please Select Department</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label>Address</label>
+                  <input
+                    type="text"
+                    formControlName="address"
+                    class="form-control"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && this.Physician.controls['address'].invalid
+                    }"
+                  />
+                  <span
+                    *ngIf="
+                      submitted && this.Physician.controls['address'].invalid
+                    "
+                    style="color: red"
+                    >Please Enter Address</span
+                  >
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- /.row -->
+          </div>
+        </form>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>

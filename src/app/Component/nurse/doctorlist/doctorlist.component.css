@@ -1,0 +1,212 @@
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~material-design-icons/iconfont/material-icons.css'; */
+
+/* mat-header-row{
+  background-color:rgb(175, 221, 240) !important;
+  color:white!important;
+  text-align: center;
+
+} */
+.green {
+ color:green;
+}
+.red {
+ color: red;
+}
+.no-wrap {
+    white-space: nowrap;
+  }
+  
+  .fixed {
+    table-layout: fixed;
+  }
+  
+  .square {
+    height: 200px;
+    width: 200px;
+    background-color: #E0E0E0;
+    border: 2px solid;
+  }
+  
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    color: rebeccapurple;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    font-family: "Open Sans", sans-serif ;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center !important;
+  }
+  
+  .mat-header-cell.mat-sort-header-sorted {
+    color:darkslateblue;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: navy;
+    font-weight: normal
+  }
+  
+  
+
+  
+  .mat-sort-header-container {
+    font-size: larger;
+    font-weight: bolder;
+  }
+  
+  :host ::ng-deep.mat-paginator .mat-paginator-container {
+    justify-content: flex-start !important;
+    display: flex !important;
+    align-items: center !important;
+    min-height: 46px !important;
+    padding: 0 8px;
+    flex-wrap: wrap-reverse;
+    width: 100%;
+    font-size: 14px !important;
+    font-family: "Open Sans", sans-serif !important;
+  }
+  
+  .btn {
+    text-transform: none;
+  }
+  
+  .mat-sort-header-button {
+    font-size: larger !important;
+    font-weight: bold !important;
+  
+  }
+  .highlight{
+    color: white;
+    background: #673AB7;
+  }
+  .input-txt {
+    padding: 30px;
+    font-size: 40px;
+  }
+  
+  /* .mat-column-speciliazation {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 auto !important;
+    width: 20% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  padding: 5px;
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  
+  }
+  .mat-column-firstName {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 auto !important;
+    width: 17% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  padding-left: 10px;
+    word-break: break-word;
+    padding: 5px;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+   
+  }
+  .mat-column-timeSlot {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 auto !important;
+    width: 20% !important;
+    padding: 10px !important;
+ 
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    padding: 5px;
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+   
+  }
+   */
+  
+  mat-cell > span.ellipsis {
+     text-overflow: ellipsis; 
+     overflow: hidden; 
+     white-space: nowrap;
+  }
+  /* .mat-column-dateTime {
+   
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 auto !important;
+    width: 15% !important;
+    padding: 5px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+  .mat-column-isAbsent {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 auto !important;
+    width: 28% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  padding: 5px;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+   
+  } */
+  .active-pink-2 input[type=search]:focus:not([readonly]) {
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+    }
+    
+    mat-header-cell{
+      border: 1px solid #fff;
+      background-color:rgb(23, 118, 177);
+      color: white;
+      font-size: 0.9vw;
+      text-align: center !important;
+
+    }
+   
+    mat-header-cell, mat-cell {
+      justify-content: center;
+    }
+    mat-cell ,td { 
+      font-size: 0.9vw;
+      text-align: center !important;
+      border: 1px solid lightgray;
+    }
+    
+   
+    
+    

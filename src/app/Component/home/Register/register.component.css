@@ -1,0 +1,72 @@
+.login{
+  color:blue;
+}
+.login a {
+  color: blue;
+  font-weight: 700;
+  text-decoration: none;
+}
+/* Add application styles & imports to this file! */
+/* @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+@import url('../node_modules/simple-keyboard/build/css/index.css'); */
+
+.auth-card{
+background:#fff;  /* fallback for old browsers */
+border:1px solid black;
+border-radius: 5px;
+
+}
+label{
+
+font-weight:600;
+}
+.user-image{
+height: 70px;
+}
+.auth-avatar{
+text-align: center;
+margin-top: -50px;
+}
+.auth{
+margin-top: 35px;
+border: none;
+border-radius: 6px;
+}
+.btn-my{
+background-color:#fff;
+border:1px solid black ;
+color: #000; ;
+font-weight: 700;
+}
+.simple-keyboard {
+  max-width: 850px;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.success{
+  background-color: green;
+}
+
+.error{
+  background-color: reds;
+}
+
+
+section
+{
+  background-image: url("../../../../assets/Images/Bg6.jpg");
+  align-items: center;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

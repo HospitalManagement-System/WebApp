@@ -1,0 +1,121 @@
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper kanban">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <h1>Subscription Plans</h1>
+          </div>
+          <div class="col-sm-6 d-none d-sm-block">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Subscription</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content pb-3">
+      <div class="container-fluid h-100">
+        <div class="card card-row card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Basic-199/Year</h3>
+          </div>
+          <div class="card-body">
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="card-title">Featuers</h5>
+              </div>
+              <div class="card-body" style="height: 182px">
+                <ol>
+                  <li>10 Online Appointment</li>
+                  <li>10 Online Free Delivery Of Medicine</li>
+                  <li>10 Online Customer Care Queries</li>
+                </ol>
+              </div>
+              <div class="card-body">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="Payment('199')"
+                  [disabled]="basic"
+                >
+                  {{ basicbutton }}
+                </button>
+                <!-- <ngx-paypal [config]="payPalConfig"> </ngx-paypal> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-row card-default">
+          <div class="card-header bg-info">
+            <h3 class="card-title">Standard-499/Year</h3>
+          </div>
+          <div class="card-body">
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="card-title">Featuers</h5>
+                <div class="card-tools"></div>
+              </div>
+              <div class="card-body" style="height: 182px">
+                <ol>
+                  <li>30 Online Appointment</li>
+                  <li>30 Online Free Delivery Of Medicine</li>
+                  <li>30 Online Customer Care Queries</li>
+                  <li>5% Discount on Medicine</li>
+                  <li>2% Discount on Medical Bill</li>
+                  <li>Doctor Follow up Post appointment</li>
+                </ol>
+              </div>
+              <div class="card-body">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="Payment('499')"
+                  [disabled]="standard"
+                >
+                  {{ standardbutton }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-row card-success">
+          <div class="card-header">
+            <h3 class="card-title">Premium-999/Year</h3>
+          </div>
+          <div class="card-body">
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="card-title">Featuers</h5>
+              </div>
+              <div class="card-body">
+                <ol>
+                  <li>99 Online Appointment</li>
+                  <li>99 Online Free Delivery Of Medicine</li>
+                  <li>99 Online Customer Care Queries</li>
+                  <li>40% Discount on Medicine</li>
+                  <li>5% Discount on Medical Bill</li>
+                  <li>Doctor Follow up Post appointment</li>
+                </ol>
+              </div>
+              <div class="card-body">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="Payment('999')"
+                  [disabled]="premium"
+                >
+                  {{ premiumbutton }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<!-- ./wrapper -->

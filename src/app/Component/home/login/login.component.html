@@ -1,0 +1,255 @@
+<section class="vh-100 gradient-custom">
+  <div class="container-fluid h-custom">
+    <!-- <div>
+        <img src="~\Login\Login\src\app\login\MicrosoftTeams-image (1).png">
+      </div> -->
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-8 col-lg-6 col-xl-6">
+        <!-- <img class="w-75"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvFcQ7_ae2_tLfUIHm0FBZnKWg0PARCDpr-g&usqp=CAU"> -->
+      </div>
+
+        
+        <div class="col-md-8 col-lg-6 col-xl-4 mt-5">
+        
+          <div class="card auth">
+          
+           
+            <div class="card-body auth-card">
+            
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <h1 class=" text-black font-bold text-center" style="color: cornflowerblue; font-weight: bold;">Login</h1>
+                <div class="form-group">
+                <!-- <mat-form-field class="form-group w-100"  style="margin-top: 1.5rem;"> -->
+
+                <input
+                  placeholder="User"
+                  formControlName="username"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && this.loginForm.controls['username'].invalid
+                  }"
+                />
+                <div class="text-danger">
+                  <span
+                  *ngIf="this.loginForm.controls['username'].invalid && (this.loginForm.controls['username'].dirty || this.loginForm.controls['username'].touched)"
+                    >Username is required</span
+                  >
+                </div>
+                <!-- <mat-error *ngIf="isFieldInvalid('username')" style="color:red">
+                    Please inform your user name
+                  </mat-error> -->
+
+                <!-- </mat-form-field> -->
+              </div>
+              <div class="form-group">
+                <!-- <mat-form-field  class="form-group w-100 mb-1"> -->
+
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  formControlName="password"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && this.loginForm.controls['password'].invalid
+                  }"
+                />
+                <div class="text-danger">
+                  <span
+                    *ngIf="this.loginForm.controls['password'].invalid && (this.loginForm.controls['password'].dirty || this.loginForm.controls['password'].touched)"
+                    >Password is required</span
+                  >
+                </div>
+                <!-- <mat-error *ngIf="isFieldInvalid('password')" style="color: red;"
+                    >
+                      Please inform your password
+                    </mat-error> -->
+
+                <!-- </mat-form-field > -->
+              </div>
+
+              <mat-error
+                *ngIf="errorstatus && this.loginForm.status === 'VALID'"
+                style="color: red"
+              >
+                {{ errormessage }}
+              </mat-error>
+              <span class="float-right text-right mt-0" (click)="open(content)"
+                ><a href="#">Forgot Password</a></span
+              >
+              <div class="text-center">
+                <button
+                  class="btn btn-primary text-center border-dark submit"
+                  style="font-weight: 700"
+                  [disabled]="loginForm.pristine || loginForm.invalid"
+                >
+                  Login
+                </button>
+              </div>
+
+              <div class="text-center text-black mt-2 font-bold sign-up">
+                Don`t have an account ?
+                <a routerLink="/Signup"
+                  ><span class="font-bold text-primary" style="font-weight: 700"
+                    >Sign Up</span
+                  ></a
+                >
+                here.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <ng-template #content let-modal>
+    <div class="modal-header p-0">
+      <h2
+        class="justify-content-center w-100 mt-3 text-center"
+        id="modal-basic-title"
+        *ngIf="!OldpassWordGenerated"
+      >
+        Forgot Password
+      </h2>
+      <h2
+        class="justify-content-center mt-3 w-100 text-center"
+        id="modal-basic-title"
+        *ngIf="OldpassWordGenerated"
+      >
+        Reset-Password
+      </h2>
+      <button type="  " class="close btn-white" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <div class="panel-body" *ngIf="!isForgotPassword">
+                <fieldset>
+                  <div class="form-group" *ngIf="!OldpassWordGenerated">
+                    <input
+                      class="form-control text-black input-lg"
+                      placeholder="E-mail Address"
+                      [(ngModel)]="userEmail"
+                      name="email"
+                      type="email"
+                    />
+                  </div>
+                  <button
+                    class="btn btn-md btn-primary btn-block"
+                    (click)="SendEmail()"
+                    *ngIf="!OldpassWordGenerated"
+                  >
+                    <span>Recover Password Request</span>
+                  </button>
+
+                  <div *ngIf="OldpassWordGenerated" class="form-group">
+                    <input
+                      class="mt-2 form-control text-black input-lg"
+                      [(ngModel)]="oldpassword"
+                      placeholder="Enter Default Password"
+                      name="Old Password"
+                      type="password"
+                    />
+
+                    <input
+                      class="mt-2 form-control text-black input-lg"
+                      [(ngModel)]="newpassword"
+                      placeholder="Enter New Password"
+                      name="password"
+                      type="password"
+                    />
+
+                    <input
+                      class="mt-2 form-control text-black input-lg"
+                      [(ngModel)]="confirmpassword"
+                      placeholder="Confirm New Password"
+                      name="confirmpassword"
+                      type="password"
+                    />
+                  </div>
+
+                  <div>
+                    <span style="color: red">{{ errorMessage }}</span>
+                  </div>
+                  <button
+                    *ngIf="OldpassWordGenerated"
+                    class="mt-2 btn btn-md btn-primary btn-block"
+                    [disabled]="
+                      !oldpassword || !newpassword || !confirmpassword
+                    "
+                    (click)="ResetPassword()"
+                    data-dismiss="modal"
+                  >
+                    Reset Password
+                  </button>
+                  <!-- 
+                <div>
+                  <span style="color:red">{{errorMessage}}</span>
+                </div> 
+               -->
+                </fieldset>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!--ChangePassword-->>
+
+  <!-- <ng-template #changepasscontent  let-modal>
+	<div class="modal-header p-0" *ngIf="isFirstLogin">
+    <h2 class="justify-content-center mt-3  w-100 text-center"
+    id="modal-basic-title">
+  Change Password
+  </h2>
+  <button type="button" class=" close btn-white" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+
+	</div>
+  <div class="modal-body" *ngIf="isFirstLogin">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="text-center">
+            <div class="panel-body" >
+              <fieldset>
+                <div class="form-group">
+                  <input class="mt-2 form-control text-black input-lg" [(ngModel)]="oldpassword" placeholder="Enter Old Password" name="Old Password" type="password"/>
+                 
+         
+                  <input class="mt-2 form-control text-black input-lg" [(ngModel)]="newpassword" placeholder="Enter New Password" name="password" type="password" />
+                 
+                  <input class="mt-2 form-control text-black input-lg" [(ngModel)]="confirmpassword" placeholder="Confirm New Password" name="confirmpassword" type="password" />
+                 
+                </div>
+
+                <div>
+                  <span style="color:red">{{errorMessage}}</span>
+                </div>
+                <button class="mt-2 btn btn-md btn-primary btn-block" [disabled]="!oldpassword || !newpassword || !confirmpassword"  data-dismiss="modal">Reset Password</button>
+
+                <div>
+                  <span style="color:red">{{errorMessage}}</span>
+                </div> 
+              </fieldset>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template> -->
+</section>

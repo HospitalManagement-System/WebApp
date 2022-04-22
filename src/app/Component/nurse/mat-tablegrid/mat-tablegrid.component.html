@@ -1,0 +1,19 @@
+<!-- <app-dynamic-table [(receivedData)]="fakeData"></app-dynamic-table> -->
+
+<!-- <app-chart [data]="value"></app-chart> -->
+<h3>Patiet Apponmet Details</h3>
+<div label="All Products">
+    <div *ngIf="allResults">
+      <app-dynamic-table
+        [receivedData]="fakeData"
+        [columns]="columns"
+        tableTitle="All Products"
+        [metaCount]="metaCount"
+        (clickedItem)="viewItem($event)"
+        (pageEvent)="updatePagination($event)"
+        (filterEvent)="getProductsSearched($event)"
+          >
+      </app-dynamic-table>
+    </div>
+  </div>
+  

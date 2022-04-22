@@ -1,0 +1,37 @@
+mat-card-header
+{
+    font-size: medium;
+    color: blue;
+}
+th{
+    font-size:medium;
+    color:black;   
+    padding: 10px !important;
+}
+td{
+    font-size: small;
+    color:grey;
+   align-items: center;
+   padding-left:10px !important;
+}
+mat-card
+{
+    border:1px grey
+}
+mat-label
+{
+    font-size: small;
+}
+td > span.Elipsis {
+   white-space: nowrap;     
+     /* overflow: hidden; */
+    text-overflow: ellipsis;
+    max-width: auto;
+ }
+ /* th:nth-child(7){
+    width: 20px;
+ }
+ td:nth-child(7){
+    width: 20px;
+ } */
+ 

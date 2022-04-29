@@ -43,6 +43,12 @@ export class HomeComponent {
     } else if (user.role == 'NURSE') {
       this.router.navigateByUrl('/NurseDashboard');
     }
+    else if (user.role == 'RECEPTIONIST') {
+      this.router.navigateByUrl('/RECEPTIONAISTDashboard');
+    }
+    else if (user.role == 'FINANCE') {
+      this.router.navigateByUrl('/NurseDashboard');
+    }
   }
   getuserbyId() {
     this.userService

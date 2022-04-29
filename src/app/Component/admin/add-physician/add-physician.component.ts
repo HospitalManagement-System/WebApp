@@ -105,6 +105,45 @@ export class AddPhysicianComponent implements OnInit {
         });
       }
     }
+    else if (this.UserType === 'RECEPTIONIST') {
+      this.Type = 'RECEPTIONIST';
+
+      if (this.UserType === 'RECEPTIONIST') {
+        this.adminservice.EduactionList(this.Type).subscribe((res) => {
+          this.educationdata.push(...res);
+        });
+        this.adminservice.Designation(this.Type).subscribe((res) => {
+          this.designationdata.push(...res);
+        });
+        this.adminservice.Specialization(this.Type).subscribe((res) => {
+          this.specalization.push(...res);
+        });
+
+        this.adminservice.Department(this.Type).subscribe((res) => {
+          this.departmentdata.push(...res);
+        });
+      }
+    }
+    else if (this.UserType === 'FINANCE') {
+      this.Type = 'FINANCE';
+
+      if (this.UserType === 'FINANCE') {
+        this.adminservice.EduactionList(this.Type).subscribe((res) => {
+          this.educationdata.push(...res);
+        });
+        this.adminservice.Designation(this.Type).subscribe((res) => {
+          this.designationdata.push(...res);
+        });
+        this.adminservice.Specialization(this.Type).subscribe((res) => {
+          this.specalization.push(...res);
+        });
+
+        this.adminservice.Department(this.Type).subscribe((res) => {
+          this.departmentdata.push(...res);
+        });
+      }
+    }
+
 
     this.FormData();
   }

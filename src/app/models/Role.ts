@@ -4,4 +4,6 @@ export enum Role {
   Physician = 'PHYSICIAN',
   Nurse = 'NURSE',
   Patient = 'PATIENT',
+  RECEPTIONIST='RECEPTIONIST',
+  FINANCE ='FINANCE'
 }

@@ -12,7 +12,6 @@ import { Attendance } from '../models/Attendance';
 import { environment } from 'src/environments/environment';
 // import { EventData } from '../Component/admin/admin-calendar/admin-calendar.component';
 
-
 @Injectable({
   providedIn: 'root',
 })

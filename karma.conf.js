@@ -25,7 +25,11 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
+<<<<<<< HEAD
       dir: require('path').join(__dirname, './coverage/WebApp'),
+=======
+      dir: require('path').join(__dirname, './coverage/CosmosWebApp'),
+>>>>>>> 14cf1ab3daa10567a31dc37cd9b8e0f1ddead130
       subdir: '.',
       reporters: [
         { type: 'html' },

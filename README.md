@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # WebApp
+=======
+# CosmosWebApp
+>>>>>>> 14cf1ab3daa10567a31dc37cd9b8e0f1ddead130
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
 

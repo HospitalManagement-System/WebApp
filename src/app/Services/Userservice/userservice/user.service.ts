@@ -6,7 +6,7 @@ import { User } from 'src/app/models/User';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  readonly baseUrl = environment.apiUrl;
+  readonly baseUrl = environment.URL;
   constructor(private http: HttpClient, private fb: FormBuilder) {}
 
   // formModel = this.fb.group({
@@ -35,11 +35,11 @@ export class UserService {
   // })
 
   getAll() {
-    return this.http.get<User[]>(`${environment.URL}users`);
+    return this.http.get<User[]>(`${this.baseUrl}users`);
   }
 
   getById(id?: number) {
-    return this.http.get<User>(`${environment.URL}users/${id}`);
+    return this.http.get<User>(`${this.baseUrl}users/${id}`);
   }
 
   register(registrationform: FormGroup) {
@@ -68,7 +68,7 @@ export class UserService {
     console.log(userDetails);
     registrationform.reset();
     return this.http.post(
-      `${environment.URL}User/Register`,
+      `${this.baseUrl}User/Register`,
       userDetails,
       { responseType: 'text' }
     );

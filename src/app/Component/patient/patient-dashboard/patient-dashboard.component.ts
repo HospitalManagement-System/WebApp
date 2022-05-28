@@ -28,6 +28,8 @@ import {
   DrugHeaderData,
 } from 'src/app/models/patientDashboard';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 
 @Component({
   selector: 'app-patient-dashboard',

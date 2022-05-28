@@ -14,6 +14,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 @Component({
   selector: 'app-register',
   encapsulation: ViewEncapsulation.None,

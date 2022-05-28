@@ -127,6 +127,7 @@ export class AddPhysicianComponent implements OnInit {
       dob: ['', Validators.required],
       department: ['', Validators.required],
       address: ['', Validators.required],
+      costPerVisit:['',Validators.required]
     });
   }
 
@@ -261,6 +262,7 @@ export class AddPhysicianComponent implements OnInit {
             specialization: data.designation,
             email: data.Email,
             Designation: data.department,
+            CostPerVisit:data.costPerVisit
           },
         };
 

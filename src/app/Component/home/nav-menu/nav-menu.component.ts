@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Role } from 'src/app/models/Role';
 import { User } from 'src/app/models/User';
 import { AuthenticationService } from 'src/app/Services';
+import { CacheInfo } from '../../shared/CacheInfo';
 
 @Component({
   selector: 'app-nav-menu',
@@ -45,7 +46,7 @@ export class NavMenuComponent implements OnInit {
   }
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn; // {2}
-    var Get = localStorage.getItem('currentUser');
+    var Get = CacheInfo.get("currentUser")!=null ? JSON.parse(CacheInfo.get("currentUser")) : null;
     if (typeof Get === 'string') {
       var userName = JSON.parse(Get).userName;
     }

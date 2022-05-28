@@ -20,6 +20,7 @@ import { PatientdetailsDemo } from 'src/app/models/patientdetails-model';
 import { Postal } from 'src/app/models/postal-model';
 import { patientdetails } from 'src/app/Services/patientdetails.service';
 import { Patientrelativedetails } from 'src/app/models/patientrelativedetails';
+import { CacheInfo } from '../../shared/CacheInfo';
 
 @Component({
   selector: 'app-patient-details',
@@ -69,7 +70,7 @@ export class PatientDetailsComponent implements OnInit {
   constructor(private patient: patientdetails) {}
 
   ngOnInit(): void {
-    var Get = localStorage.getItem('currentUser');
+    var Get = CacheInfo.get("currentUser");
     this.postobj = new PatientdetailsDemo();
     this.relativeobj = new Patientrelativedetails();
     if (typeof Get === 'string') {

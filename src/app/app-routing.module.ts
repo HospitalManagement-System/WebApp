@@ -32,7 +32,8 @@ import { PreviouspatientvisitdetailsComponent } from './Component/patient/previo
 import { CurrentPatientComponent } from './Component/physician/CurrentPatient/current-patient.component';
 //import { NavMenuComponent } from './Component/nav-menu/nav-menu.component';
 import { PhysicianComponent } from './Component/physician/physician.component';
-import { BedAllotmentComponent } from './Component/shared/bed-allotment/bed-allotment.component';
+import { BedDesignComponent } from './Component/shared/bed-design/bed-design.component';
+import { BillInfoComponent } from './Component/shared/bill-info/bill-info.component';
 import { BookAppointmentComponent } from './Component/shared/book-appointment/book-appointment.component';
 import { CalendarComponent } from './Component/shared/calendar/calendar.component';
 import { InboxComponent } from './Component/shared/inbox/inbox.component';
@@ -63,13 +64,13 @@ const routes: Routes = [
     component: CurrentPatientComponent,
     path: 'CurrentPatient',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Physician] },
+    data: { roles: [Role.Physician],headerLabel:'Current Patient'},
   },
   {
     component: AdminDashboardComponent,
     path: 'AdminDashboard',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] },
+    data: { roles: [Role.Admin],headerLabel:'Admin Dashboard'},
   },
   {
     component: PatientUserComponent,
@@ -81,19 +82,19 @@ const routes: Routes = [
     component: AddPhysicianComponent,
     path: 'AddPhysician/:type',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] },
+    data: { roles: [Role.Admin],headerLabel:'Add Physician'},
   },
   {
     component: AddPhysicianComponent,
     path: 'AddNurse/:type',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] },
+    data: { roles: [Role.Admin],headerLabel:'Add Nurse' },
   },
   {
     component: ViewPhysicianComponent,
     path: 'ViewPhysician',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Physician] },
+    data: { roles: [Role.Physician],headerLabel:'View Physician' },
   },
   {
     component: RegisterComponent,
@@ -107,7 +108,7 @@ const routes: Routes = [
     component: NurseDashboardComponent,
     path: 'NurseDashboard',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Nurse] },
+    data: { roles: [Role.Nurse],headerLabel:'Nurse Dashboard'  },
   },
   {
     component: AppointmentViewComponent,
@@ -139,20 +140,20 @@ const routes: Routes = [
     component: PatientBookappointmentComponent,
     path: 'PatientBookappointment',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Patient] },
+    data: { roles: [Role.Patient],headerLabel:'Patient Book appointment' },
   },
   {
     component: PatientBookappointmentComponent,
     path: 'NurseBookappointment',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Nurse] },
+    data: { roles: [Role.Nurse],headerLabel:'Nurse Book appointment' },
   },
 
   {
     component: PatientViewdetailsComponent,
     path: 'PatientViewdetails',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Patient] },
+    data: { roles: [Role.Patient],headerLabel:'Patient Viewdetails'  },
   },
   {
     component: PatientDashboardComponent,
@@ -162,7 +163,7 @@ const routes: Routes = [
     component: AdminCalendarComponent,
     path: 'AdminCalender',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] },
+    data: { roles: [Role.Admin],headerLabel:'Admin Calender' },
   },
   {
     component: MatTablegridComponent,
@@ -180,6 +181,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       roles: [Role.Admin] || [Role.Nurse] || [Role.Physician],
+      headerLabel:'Calender'
     },
   },
   {
@@ -187,39 +189,39 @@ const routes: Routes = [
     path: 'PatientCalender/:Type',
     canActivate: [AuthGuard],
     data: {
-      roles: [Role.Patient],
+      roles: [Role.Patient],headerLabel:'Patient Calender'
     },
   },
   {
     component: PatientBookappointmentComponent,
     path: 'AdminBookappointment/:type',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] },
+    data: { roles: [Role.Admin],headerLabel:'Admin Book appointment' },
   },
   {
     component: PatientBookappointmentComponent,
     path: 'PatientBookappointment/:type',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] },
+    data: { roles: [Role.Admin],headerLabel:'Patient Book appointment' },
   },
   {
     component: LockedAccountComponent,
     path: 'LockedAccount',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] },
+    data: { roles: [Role.Admin],headerLabel:'Locked Account' },
   },
   {
     component: AdminPatientComponent,
     path: 'AdminPatient',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] },
+    data: { roles: [Role.Admin],headerLabel:'Admin Patient' },
   },
   {
     component: AdminHospitalComponent,
     path: 'AdminHospital',
     canActivate: [AuthGuard],
     data: {
-      roles: [Role.Admin] || [Role.Patient] || [Role.Nurse] || [Role.Physician],
+      roles: [Role.Admin] || [Role.Patient] || [Role.Nurse] || [Role.Physician],headerLabel:'Admin Hospital' 
     },
   },
   {
@@ -227,7 +229,7 @@ const routes: Routes = [
     path: 'BookAppointment/:Type',
     canActivate: [AuthGuard],
     data: {
-      roles: [Role.Admin],
+      roles: [Role.Admin],headerLabel:'Book Appointment'
     },
   },
   {
@@ -235,7 +237,7 @@ const routes: Routes = [
     path: 'PatientBookAppointment/:Type',
     canActivate: [AuthGuard],
     data: {
-      roles: [Role.Patient],
+      roles: [Role.Patient],headerLabel:'Patient Book Appointment'
     },
   },
   {
@@ -243,50 +245,50 @@ const routes: Routes = [
     path: 'Subscription',
     canActivate: [AuthGuard],
     data: {
-      roles: [Role.Patient],
+      roles: [Role.Patient],headerLabel:'Patient Subscription'
     },
   },
   {
     component: PreviouspatientvisitdetailsComponent,
     path: 'previouspatientvisitdetails',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Patient] },
+    data: { roles: [Role.Patient],headerLabel:'previous patient visitdetails' },
   },
   {
     component: PreviouspatientvisitdetailsComponent,
     path: 'NursePreviousVisitDetails',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Nurse] },
+    data: { roles: [Role.Nurse],headerLabel:'Nurse Previous VisitDetails' },
   },
   {
     component: PatientViewdetailsComponent,
     path: 'NursePatientViewdetails',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Nurse] },
+    data: { roles: [Role.Nurse],headerLabel:'Nurse Patient Viewdetails' },
   },
   {
     component: PatientViewdetailsComponent,
     path: 'PhysicianPatientViewdetails',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Physician] },
+    data: { roles: [Role.Physician],headerLabel:'Physician Patient Viewdetails'  },
   },
   {
     component: CalendarComponent,
     path: 'NurseAdminCalender',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Nurse] },
+    data: { roles: [Role.Nurse],headerLabel:'Nurse Admin Calender'  },
   },
   {
     component: UpcomingAppointmentComponent,
     path: 'NurseUpcomingAppointmentComponent',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Nurse] },
+    data: { roles: [Role.Nurse],headerLabel:'Nurse Upcoming Appointment'  },
   },
   {
     component: UpcomingAppointmentComponent,
     path: 'PhysicianUpcomingAppointmentComponent',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Physician] },
+    data: { roles: [Role.Physician],headerLabel:'Physician Upcoming Appointment' },
   },
   {
     component: InboxComponent,
@@ -299,10 +301,22 @@ const routes: Routes = [
     //canActivate: [AuthGuard],
   },
   {
-    component: BedAllotmentComponent,
+    component: BedDesignComponent,
     path: 'BedAllotment',
-    // canActivate: [AuthGuard],
-    // data: { roles: [Role.Admin] },
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin],headerLabel:'Bed Allotment' },
+  },
+  {
+    component: BedDesignComponent,
+    path: 'NurseBedAllotment',
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Nurse],headerLabel:'Nurse Bed Allotment' },
+  },
+  {
+    component: BillInfoComponent,
+    path: 'BillGenerate',
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin],headerLabel:'Bill Generate' },
   },
   { path: '**', redirectTo: '' },
 ];

@@ -1,5 +1,5 @@
-export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:4200',
-  URL: 'https://localhost:44359/api/',
+export class environment {
+  static production:boolean = false; 
+  static apiUrl:string = 'http://localhost:4200';
+  static URL:string = 'https://localhost:44359/api/';
 };

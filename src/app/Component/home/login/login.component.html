@@ -33,13 +33,7 @@
                 />
                 <div class="text-danger">
                   <span
-                    *ngIf="
-                      (this.loginForm.controls['username']?.touched &&
-                        this.loginForm.controls['username']?.status ===
-                          'INVALID') ||
-                      (submitted &&
-                        this.loginForm.controls['username']?.untouched)
-                    "
+                  *ngIf="this.loginForm.controls['username'].invalid && (this.loginForm.controls['username'].dirty || this.loginForm.controls['username'].touched)"
                     >Username is required</span
                   >
                 </div>
@@ -64,13 +58,7 @@
                 />
                 <div class="text-danger">
                   <span
-                    *ngIf="
-                      (this.loginForm.controls['password']?.touched &&
-                        this.loginForm.controls['password']?.status ===
-                          'INVALID') ||
-                      (submitted &&
-                        this.loginForm.controls['password']?.untouched)
-                    "
+                    *ngIf="this.loginForm.controls['password'].invalid && (this.loginForm.controls['password'].dirty || this.loginForm.controls['password'].touched)"
                     >Password is required</span
                   >
                 </div>
@@ -95,6 +83,7 @@
                 <button
                   class="btn btn-primary text-center border-dark submit"
                   style="font-weight: 700"
+                  [disabled]="loginForm.pristine || loginForm.invalid"
                 >
                   Login
                 </button>

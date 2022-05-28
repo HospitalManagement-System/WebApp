@@ -29,7 +29,7 @@ import {
 
 //Mat Alert
 import { MatDialog } from '@angular/material/dialog';
-
+import { CacheInfo } from '../CacheInfo';
 @Component({
   selector: 'app-book-appointment',
   templateUrl: './book-appointment.component.html',
@@ -305,7 +305,10 @@ export class BookAppointmentComponent implements OnInit {
       this.diagnosicscheck = false;
 
       this.service.GetPhysicianById(e.value).subscribe((res) => {
-        this.physician.push(...res);
+        if(res.length > 0)
+          this.physician = res;
+        else
+          this.physician = [];
       });
     }
   }
@@ -435,7 +438,7 @@ export class BookAppointmentComponent implements OnInit {
     if (this.AppointmentID != 'undefined') {
       if (this.registrationForm.valid) {
         //PatientID
-        var Get = localStorage.getItem('currentUser');
+        var Get = CacheInfo.get("currentUser");
         if (typeof Get === 'string') {
           var id = JSON.parse(Get).id;
         }
@@ -527,7 +530,7 @@ export class BookAppointmentComponent implements OnInit {
     } else {
       if (this.registrationForm.valid) {
         //PatientID
-        var Get = localStorage.getItem('currentUser');
+        var Get = CacheInfo.get("currentUser");
         if (typeof Get === 'string') {
           var id = JSON.parse(Get).id;
         }

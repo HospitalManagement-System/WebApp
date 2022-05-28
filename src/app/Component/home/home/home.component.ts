@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 import { User } from 'src/app/models/User';
 import { AuthenticationService } from 'src/app/Services';
 import { UserService } from 'src/app/Services/Userservice/userservice/user.service';
+import { CacheInfo } from '../../shared/CacheInfo';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
@@ -12,7 +13,7 @@ export class HomeComponent {
   currentUser: User;
   userFromApi!: User;
   id!: number;
-  userid: any = localStorage.getItem('currentUser');
+  userid: any = CacheInfo.get("currentUser");
   isLoggedIn$!: Observable<boolean>; // {1}
   //isLoggedIn$?: boolean;
 
@@ -30,8 +31,8 @@ export class HomeComponent {
   ngOnInit() {
     this.loading = true;
     this.isLoggedIn$ = this.authenticationService.isLoggedIn; // {2}
-    const user = this.currentUser;
-    if (user == null) {
+    const user =  this.currentUser;
+    if ((typeof user!="undefined" && user!=null && Object.keys(user).length == 0) || user == null) {
       this.router.navigateByUrl('/Login');
     } else if (user.role == 'ADMIN') {
       this.router.navigateByUrl('/AdminDashboard');

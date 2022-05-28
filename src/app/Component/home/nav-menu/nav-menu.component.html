@@ -1,315 +1,80 @@
 <!-- Old Navbar-->
+<mat-nav-list *ngIf="(currentUser | json) != '{}'">
+  <span class="logo py-4">
+    <img src="assets/Images/CosmosLogo.png" style="width: 100%;height: 100%;" />
+  </span>
+  <a mat-list-item  [routerLink]="['AdminDashboard']" routerLinkActive="router-link-active"
+    *ngIf="isAdmin">
+    DashBoard
+  </a>
 
-<div>
-  <mat-toolbar
-    *ngIf="currentUser"
-    style="
-      background-image: linear-gradient(to right, #d7e9f5, rgb(23, 118, 177));
-    "
-  >
-    <div fxShow="true" fxHide.gt-sm="true">
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
-    <span class="text-white" style="color: white; margin-right: 10px"
-      ><a class="navbar-item">
-        <img
-          src="assets/Images/CosmosLogo.png"
-          style="width: 100px; height: 20px"
-        /> </a
-    ></span>
+  <a mat-list-item  [routerLink]="['Physician']" (click)="setTitle('Physician')"
+    routerLinkActive="router-link-active" *ngIf="isPhysician" >Physician</a>
 
-    <span class="example-spacer"></span>
-    <div fxShow="true" fxHide.lt-md="true">
-      <span>
-        <a
-          class="companyName"
-          [routerLink]="['AdminDashboard']"
-          routerLinkActive="router-link-active"
-          *ngIf="isAdmin"
-        >
-          DashBoard
-        </a>
+  <a mat-list-item  [routerLink]="['AddPhysician/physician']" routerLinkActive="router-link-active"
+    *ngIf="isAdmin" (click)="setTitle('Register Physician')" >
+    Register Physician
+  </a>
+  <a mat-list-item  [routerLink]="['AddNurse/nurse']" routerLinkActive="router-link-active"
+    *ngIf="isAdmin" (click)="setTitle('Register Nurse')" >
+    Register Nurse
+  </a>
+  <a mat-list-item  [routerLink]="['BedAllotment']" routerLinkActive="router-link-active"
+    *ngIf="isAdmin" (click)="setTitle('Bed Allotment')" >
+    Bed Allotment
+  </a>
+  <a mat-list-item  [routerLink]="['BillGenerate']" routerLinkActive="router-link-active"
+    *ngIf="isAdmin" (click)="setTitle('Bill Generate')" >
+    Bill Generate
+  </a>
+  <a mat-list-item   [routerLink]="['ViewPhysician']" routerLinkActive="router-link-active"
+    *ngIf="isPhysician" (click)="setTitle('View Physician')">
+    Calendar
+  </a>
+  <a mat-list-item  [routerLink]="['NurseDashboard']" routerLinkActive="router-link-active"
+    *ngIf="isNurse" (click)="setTitle('Nurse')">
+    Nurse
+  </a>
+  <a mat-list-item   [routerLink]="['Inbox']" routerLinkActive="router-link-active"
+    *ngIf="isNurse || isPhysician">
+    Inbox
+  </a>
+  <a mat-list-item  [routerLink]="['NurseBedAllotment']" routerLinkActive="router-link-active"
+    *ngIf="isNurse" (click)="setTitle('Bed Allotment')" >
+    Bed Allotment
+  </a>
+  <a mat-list-item   [routerLink]="['PatientDashboard']"
+    routerLinkActive="router-link-active" *ngIf="isPatient" (click)="setTitle('PatientDashboard')">
+    DashBoard
+  </a>
 
-        <a
-          class="companyName"
-          [routerLink]="['Physician']"
-          (click)="setTitle('Physician')"
-          routerLinkActive="router-link-active"
-          *ngIf="isPhysician"
-          mat-button
-          >Physician</a
-        >
+  <a mat-list-item   [routerLink]="['PatientDetails']"
+    routerLinkActive="router-link-active" *ngIf="isPatient" (click)="setTitle('Patient')">
+    Demographics Details
+  </a>
+  <a mat-list-item   [routerLink]="['PatientBookAppointment/Patient']"
+    routerLinkActive="router-link-active" (click)="setTitle('BookAppointment')" *ngIf="isPatient">
+    BookAppointment
+  </a>
+  <a mat-list-item   [routerLink]="['PatientCalender/Patient']"
+    routerLinkActive="router-link-active" *ngIf="isPatient" (click)="setTitle(' Patient Calendar')">
+    Patient Calendar
+  </a>
+  <a mat-list-item   [routerLink]="['Subscription']" routerLinkActive="router-link-active"
+    *ngIf="isPatient" (click)="setTitle('Subscription')">
+    Subscription
+  </a>
+  <a mat-list-item  [routerLink]="['BookAppointment/Patient']" routerLinkActive="router-link-active"
+    *ngIf="isAdmin" (click)="setTitle(' Book Appointment')">
+    Book Appointment
+  </a>
+  <a mat-list-item   [routerLink]="['Calender']" routerLinkActive="router-link-active"
+    (click)="setTitle('Calendar')" *ngIf="isAdmin">
+    Calendar
+  </a>
 
-        <a
-          class="companyName"
-          [routerLink]="['AddPhysician/physician']"
-          routerLinkActive="router-link-active"
-          *ngIf="isAdmin"
-          (click)="setTitle('Register Physician')"
-          mat-button
-        >
-          Register Physician
-        </a>
-        <a
-          class="companyName"
-          [routerLink]="['AddNurse/nurse']"
-          routerLinkActive="router-link-active"
-          *ngIf="isAdmin"
-          (click)="setTitle('Register Nurse')"
-          mat-button
-        >
-          Register Nurse
-        </a>
-        <a
-        class="companyName"
-        [routerLink]="['BedAllotment']"
-        routerLinkActive="router-link-active"
-        *ngIf="isAdmin"
-        (click)="setTitle('Bed Allotment')"
-        mat-button
-      >
-      Bed Allotment
-      </a>
-        <a
-          mat-button
-          class="companyName"
-          [routerLink]="['ViewPhysician']"
-          routerLinkActive="router-link-active"
-          *ngIf="isPhysician"
-          (click)="setTitle('View Physician')"
-        >
-          Calendar
-        </a>
-        <a
-          class="companyName"
-          [routerLink]="['NurseDashboard']"
-          routerLinkActive="router-link-active"
-          *ngIf="isNurse"
-          (click)="setTitle('Nurse')"
-        >
-          Nurse
-        </a>
-        <a
-          mat-button
-          class="companyName"
-          [routerLink]="['Inbox']"
-          routerLinkActive="router-link-active"
-          *ngIf="isNurse || isPhysician"
-        >
-          Inbox
-        </a>
-        <!-- <a
-          mat-button
-          class="companyName"
-          [routerLink]="['DynamicView']"
-          routerLinkActive="router-link-active"
-          *ngIf="isNurse" (click)="setTitle('Nurse1')"
-        >
-          Nurse1
-        </a> -->
-        <a
-          mat-button
-          class="companyName"
-          [routerLink]="['PatientDashboard']"
-          routerLinkActive="router-link-active"
-          *ngIf="isPatient"
-          (click)="setTitle('PatientDashboard')"
-        >
-          DashBoard
-        </a>
-
-        <a
-          mat-button
-          class="companyName"
-          [routerLink]="['PatientDetails']"
-          routerLinkActive="router-link-active"
-          *ngIf="isPatient"
-          (click)="setTitle('Patient')"
-        >
-          Demographics Details
-        </a>
-        <a
-          mat-button
-          class="companyName"
-          [routerLink]="['PatientBookAppointment/Patient']"
-          routerLinkActive="router-link-active"
-          (click)="setTitle('BookAppointment')"
-          *ngIf="isPatient"
-        >
-          BookAppointment
-        </a>
-        <a
-          mat-button
-          class="companyName"
-          [routerLink]="['PatientCalender/Patient']"
-          routerLinkActive="router-link-active"
-          *ngIf="isPatient"
-          (click)="setTitle(' Patient Calendar')"
-        >
-          Patient Calendar
-        </a>
-        <a
-          mat-button
-          class="companyName"
-          [routerLink]="['Subscription']"
-          routerLinkActive="router-link-active"
-          *ngIf="isPatient"
-          (click)="setTitle('Subscription')"
-        >
-          Subscription
-        </a>
-
-        <!-- <a mat-button class="companyName" [routerLink]="['PatientViewdetails']" routerLinkActive="router-link-active"
-          *ngIf="isPatient" (click)="setTitle('Patient')">
-          Patient Visit Details
-        </a> -->
-        <!-- <a mat-button class="companyName" [routerLink]="['previouspatientvisitdetails']"
-          routerLinkActive="router-link-active" *ngIf="isPatient">
-          Previouspatient Visit Details
-        </a> -->
-        <a
-          mat-button
-          [routerLink]="['BookAppointment/Patient']"
-          routerLinkActive="router-link-active"
-          *ngIf="isAdmin"
-          (click)="setTitle(' Book Appointment')"
-        >
-          Book Appointment
-        </a>
-        <a
-          mat-button
-          class="companyName"
-          [routerLink]="['Calender']"
-          routerLinkActive="router-link-active"
-          (click)="setTitle('Calendar')"
-          *ngIf="isAdmin"
-        >
-          Calendar
-        </a>
-
-        <a
-          mat-button
-          class="companyName"
-          [routerLink]="['CurrentPatient']"
-          routerLinkActive="router-link-active"
-          (click)="setTitle('CurrentPatient')"
-          *ngIf="isPhysician"
-        >
-          Current Patient
-        </a>
-      </span>
-
-      <!-- <button routerLink="login"><b>Login</b></button> -->
-    </div>
-    <span class="example-spacericon"></span>
-    <i
-      class="material-icons p-2 fa fa-user-circle-o text-white pointer"
-      *ngIf="currentUser"
-    >
-      Hello {{ username }}</i
-    >
-    <i
-      class="material-icons p-2 text-white pointer"
-      (click)="logout()"
-      *ngIf="currentUser"
-      (click)="setTitle('logout')"
-      >logout</i
-    >
-  </mat-toolbar>
-
-  <mat-sidenav
-    #sidenav
-    fxLayout="column"
-    mode="over"
-    opened="false"
-    fxHide.gt-sm="true"
-  >
-    <div fxLayout="column">
-      <a mat-button routerLink="home">Home</a>
-
-      <a mat-button routerLink="Physician" *ngIf="isPhysician">Physician</a>
-      <a
-        [routerLink]="['AdminDashboard']"
-        routerLinkActive="router-link-active"
-        *ngIf="isAdmin"
-      >
-        Admin
-      </a>
-      <a
-        [routerLink]="['AddPhysician']"
-        routerLinkActive="router-link-active"
-        *ngIf="isPhysician"
-        mat-button
-      >
-        AddPhysician
-      </a>
-      <a
-        mat-button
-        [routerLink]="['ViewPhysician']"
-        routerLinkActive="router-link-active"
-        *ngIf="isPhysician"
-      >
-        View Physician
-      </a>
-      <a
-        [routerLink]="['NurseDashboard']"
-        routerLinkActive="router-link-active"
-        *ngIf="isNurse"
-      >
-        Nurse
-      </a>
-      <!-- <a
-        mat-button
-        [routerLink]="['DynamicView']"
-        routerLinkActive="router-link-active"
-        *ngIf="isNurse"
-      >
-        Nurse1
-      </a> -->
-
-      <a
-        mat-button
-        [routerLink]="['PatientDetails']"
-        routerLinkActive="router-link-active"
-        *ngIf="isPatient"
-      >
-        Patient
-      </a>
-      <a
-        mat-button
-        [routerLink]="['PatientBookappointment']"
-        routerLinkActive="router-link-active"
-        *ngIf="isPatient"
-      >
-        BookAppointment
-      </a>
-      <a
-        mat-button
-        [routerLink]="['PatientViewdetails']"
-        routerLinkActive="router-link-active"
-        *ngIf="isPatient"
-      >
-        Patient
-      </a>
-      <a
-        mat-button
-        [routerLink]="['AdminBookappointment']"
-        routerLinkActive="router-link-active"
-        *ngIf="isAdmin"
-      >
-        Book Appointment
-      </a>
-      <a
-        mat-button
-        [routerLink]="['AdminCalender']"
-        routerLinkActive="router-link-active"
-        *ngIf="isAdmin"
-      >
-        Calendar
-      </a>
-     
-    </div>
-  </mat-sidenav>
-</div>
+  <a mat-list-item   [routerLink]="['CurrentPatient']"
+    routerLinkActive="router-link-active" (click)="setTitle('CurrentPatient')" *ngIf="isPhysician">
+    Current Patient
+  </a>
+</mat-nav-list>

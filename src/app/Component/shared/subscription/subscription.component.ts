@@ -4,8 +4,11 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 
 import { PaymentService } from 'src/app/Services/Payment/payment.service';
+import { CacheInfo } from '../CacheInfo';
 
 // C:\Working Project\CosmoWebApp\src\assets\Images\CosmosLogo.png
 // import {} from 'src/assets/Images/CosmosLogo.png'
@@ -40,7 +43,7 @@ export class SubscriptionComponent implements OnInit {
   }
 
   ngOnInit() {
-    var Get = localStorage.getItem('currentUser');
+    var Get = CacheInfo.get("currentUser");
     if (typeof Get === 'string') {
       var id = JSON.parse(Get).id;
     }
@@ -77,7 +80,7 @@ export class SubscriptionComponent implements OnInit {
   }
 
   Payment(amount: any) {
-    var Get = localStorage.getItem('currentUser');
+    var Get = CacheInfo.get("currentUser");
     if (typeof Get === 'string') {
       var id = JSON.parse(Get).id;
     }
@@ -118,7 +121,7 @@ export class SubscriptionComponent implements OnInit {
             var orderId = response.razorpay_order_id;
             var paymentId = response.razorpay_payment_id;
             var signature = response.razorpay_signature;
-            var Get = localStorage.getItem('currentUser');
+            var Get = CacheInfo.get("currentUser");
             if (typeof Get === 'string') {
               var id = JSON.parse(Get).id;
             }

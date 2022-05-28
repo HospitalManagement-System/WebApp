@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Bill</h1>
+<div mat-dialog-content>
+  <div *ngIf="Needsearch">
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Search For Email or Contact</mat-label>
+      <input matInput autocomplete="off" [(ngModel)]="phoneorEmail">
+    </mat-form-field>
+    <i class="fas fa-search" (click)="onSearch()"></i>
+  </div>
+  <h1 *ngIf="NoDataFound">No Such Contact or Email Exist</h1>
+  <div id="mainBillInfo" *ngIf="!NoDataFound">
+    <div id="childbill1">
+      <span>Patient Id : </span><span>{{bill!.patientDetails.patientId}}</span>
+      <span>Patient Name : {{bill.patientDetails.firstName}}</span>
+      <span>Date : {{getDate()}}</span>
+    </div>
+    <div id="childbill2">
+      <span>Age : {{bill.patientDetails.age}}</span>
+      <span>Contact : {{bill.patientDetails.contact}}</span>
+      <span>Email : {{bill.patientDetails.email}}</span>
+    </div>
+  </div>
+
+  <table class="table">
+    <tr *ngFor="let data of bill.patientInOut">
+      <th>{{data.product.productName}}</th>
+      <td>{{data.product.cost}}</td>
+    </tr>
+  </table>
+
+</div>
+<div mat-dialog-actions *ngIf="!NoDataFound">
+  <button mat-raised-button>Print</button>
+  <button mat-raised-button>Pay</button>
+</div>

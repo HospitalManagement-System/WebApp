@@ -29,6 +29,9 @@ import {
 
 import { MatDialog } from '@angular/material/dialog';
 import { EditDailogeComponent } from '../nurse/dailoge/edit-dailoge/edit-dailoge.component';
+import { CacheInfo } from '../shared/CacheInfo';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 export interface UsersData {
   name: string;
   id: number;
@@ -142,7 +145,7 @@ export class PhysicianComponent implements OnInit {
     var slot = this.SlotGenerator('Nurse', SendDatetoSlot);
 
     // this.getdoctordata()
-    var Get = localStorage.getItem('currentUser');
+    var Get = CacheInfo.get("currentUser");
     if (typeof Get === 'string') {
       var phid = JSON.parse(Get).id;
     }

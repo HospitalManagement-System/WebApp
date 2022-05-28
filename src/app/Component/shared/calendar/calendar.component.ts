@@ -12,6 +12,9 @@ import { AdminService } from 'src/app/Services/admin.service';
 import { CalendarService } from 'src/app/Services/Calendar/calendar.service';
 import { PatientService } from 'src/app/Services/patient.service';
 import { INITIAL_EVENTS, createEventId } from '../../../models/event.utils';
+import { CacheInfo } from '../CacheInfo';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 
 export class EventMap {
   // public id: string,
@@ -75,7 +78,7 @@ export class CalendarComponent implements OnInit {
       this.CheckPatient = true;
     }
 
-    var Get = localStorage.getItem('currentUser');
+    var Get = CacheInfo.get("currentUser");
     if (typeof Get === 'string') {
       var id = JSON.parse(Get).id;
       var Role = JSON.parse(Get).role;
@@ -259,7 +262,7 @@ export class CalendarComponent implements OnInit {
   }
 
   JoinMeeting() {
-    var Get = localStorage.getItem('currentUser');
+    var Get = CacheInfo.get("currentUser");
     if (typeof Get === 'string') {
       var id = JSON.parse(Get).id;
       var role = JSON.parse(Get).role;

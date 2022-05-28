@@ -16,6 +16,9 @@ import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { Guid } from 'guid-typescript';
 import { MainUserDetails } from 'src/app/models/MainUserDeatils';
+import { CacheInfo, CommonHelper } from '../../shared/CacheInfo';
+import jwt_decode from "jwt-decode";
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -55,7 +58,6 @@ export class LoginComponent implements OnInit {
   userDetail!: MainUserDetails | undefined;
   count: number = 0;
   errorstatus!: boolean;
-
   constructor(
     private location: Location,
     private formBuilder: FormBuilder,
@@ -104,10 +106,6 @@ export class LoginComponent implements OnInit {
     const reload = () => window.location.reload();
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
-    this.authenticationService.getUserData().subscribe((res: User[]) => {
-      this.userList.push(...res);
-    });
   }
 
   onSubmit() {
@@ -115,14 +113,28 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-
     this.submitted = true;
-    var data = this.loginForm.value;
-    //let isValidCredentials = this.userList.find(
-    this.user = this.userList.find(
-      (x) => x.userName === data.username && x.password === data.password
-    );
-
+    this.authenticationService.login(this.loginForm).subscribe((res: any) => {
+      if (res != null) {
+        let decodedTocken: any = jwt_decode(res.token);
+        if (decodedTocken["user"] != null) {
+          let UserDeatils = decodedTocken["user"];
+          this.user = new User();
+          this.user.isActive = UserDeatils.IsActive;
+          this.user.isFirstLogin = UserDeatils.IsFirstLogIn;
+          this.user.isLocked = UserDeatils.IsLocked;
+          this.user.password = UserDeatils.Password;
+          this.user.role = UserDeatils.Role;
+          this.user.id = UserDeatils.Id;
+          this.user.NoOfAteempt = UserDeatils.NoOfAttempts;
+          this.user.userName = UserDeatils.UserName;
+          this.user.token = res.token;
+        }
+      }
+      this.login();
+    });
+  }
+  login(){    
     if (this.user !== undefined && this.loginForm.valid) {
       if (this.user.isLocked) {
         this.errorstatus = true;
@@ -135,12 +147,11 @@ export class LoginComponent implements OnInit {
         return;
       }
       this.errorstatus = false;
-      localStorage.setItem('currentUser', JSON.stringify(this.user));
+      CommonHelper.AddToLocalStorage(this.user);
+      CacheInfo.set("currentUser",JSON.stringify(this.user));
       if (!this.user.isFirstLogin) {
-        // let changepasscontent : any;
-        // this.openchangepass(changepasscontent);
-        this.authenticationService.login(this.loginForm, this.user);
-        this.GetUser(this.user?.id);
+        this.authenticationService.setcurrentUserValue(this.user);
+        this.router.navigateByUrl('/Home');
       } else {
         this.router.navigate(['Changepassword']);
         this.isFirstLogin = true;
@@ -153,7 +164,7 @@ export class LoginComponent implements OnInit {
         this.errorstatus = true;
         this.errormessage = 'Your account is locked.';
         let userreset = this.userList.find(
-          (x) => x.userName.toLowerCase() === data.username.toLowerCase()
+          (x) => x.userName.toLowerCase() === this.loginForm.value.username.toLowerCase()
         );
         if (userreset !== undefined) {
           this.userDetail = {
@@ -172,7 +183,6 @@ export class LoginComponent implements OnInit {
       this.errorstatus = true;
     }
   }
-
   openchangepass(changepasscontent: any) {
     this.modalService
       .open(changepasscontent, { ariaLabelledBy: 'modal-basic-title' })
@@ -217,10 +227,6 @@ export class LoginComponent implements OnInit {
       (!this.loginForm.value.valid && this.loginForm.value.touched) ||
       (this.loginForm.value.untouched && this.formSubmitAttempt)
     );
-  }
-
-  GetUser(id: Guid | undefined) {
-    this.authenticationService.getUser(id);
   }
 
   ResetPassword() {

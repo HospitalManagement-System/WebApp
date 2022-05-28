@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
@@ -10,72 +10,67 @@ import { AnyObject } from 'chart.js/types/basic';
 import { Guid } from 'guid-typescript';
 import { Changepassword } from 'src/app/models/changepassword';
 import { MainUserDetails } from 'src/app/models/MainUserDeatils';
+import { CacheInfo, CommonHelper } from 'src/app/Component/shared/CacheInfo';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   private loggedIn = new BehaviorSubject<boolean>(false); // {1}
-
+  private canGo = false;
+  private HeaderLabel = new BehaviorSubject<string>('');
+  HeaderLabelValue = this.HeaderLabel.asObservable();
   constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem('currentUser')!)
+      typeof CacheInfo.get("currentUser")!="undefined" ? JSON.parse(CacheInfo.get("currentUser")!) : new User()
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): User {
+    if(Object.keys(this.currentUserSubject.value).length == 0 && (this.router.url.indexOf("Login") == 0 || this.router.url == '/') && !this.canGo){
+      this.canGo = true;
+      //this.getCurrentUserDetails();
+      let UserDeatil = CommonHelper.GetFromLocalStorage();
+      if(UserDeatil!=null){
+        CacheInfo.set("currentUser",UserDeatil);
+        this.setcurrentUserValue(JSON.parse(UserDeatil));
+      }
+    }
     return this.currentUserSubject.value;
   }
-
-  login(formModel: FormGroup, user: User) {
+  setcurrentUserValue(User:User) {
+    this.currentUserSubject.next(User);
+    this.loggedIn.next(true);
+  }
+  getCurrentUserDetails(){
+    this.getCurrentUserDetailsService().subscribe((UserDeatil) => {
+         if(UserDeatil!=null){
+              CacheInfo.set("currentUser",UserDeatil);
+              this.setcurrentUserValue(JSON.parse(UserDeatil));
+        }
+    });
+  }
+  getCurrentUserDetailsService(){
+     return this.http.get<any>(`${environment.URL}User/getCurrentUserDetails`);
+  }
+  login(formModel: FormGroup) {
     var loginModel = {
       UserName: formModel.value.username,
       Password: formModel.value.password,
     };
     console.log(loginModel);
-    return this.http
-      .post(`${environment.URL}User/Login`, loginModel)
-      .subscribe({
-        next: (res: any) => {
-          // console.log(res)
-          localStorage.setItem('token', res.token);
-          //localStorage.setItem('user', JSON.stringify(user));
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
-          this.loggedIn.next(true);
-          //  return user;
-          this.router.navigateByUrl('/Home');
-        },
-        error: (e) => console.error(e),
-      });
+    return this.http.post<any>(`${environment.URL}User/Login`, loginModel)
   }
 
   get isLoggedIn() {
     return this.loggedIn.asObservable(); // {2}
   }
   logout() {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('token');
-    const emptyDataResult: User = {
-      userName: '',
-      password: '',
-      firstName: '',
-      lastName: '',
-      isFirstLogin: false,
-      isLocked: false,
-      isActive: false,
-      email: '',
-      role: '',
-      token: '',
-      loggedIn: '',
-      NoOfAteempt: 0,
-    };
-    this.currentUserSubject.next(emptyDataResult);
-    //this.router.navigateByUrl('/login');
-    this.router.navigate(['Login']).then(() => {
-      window.location.reload();
-    });
+    CacheInfo.clear();
+    CommonHelper.RemoveFromLocalStorage();
+    this.setcurrentUserValue(new User());
+    this.router.navigateByUrl('/Login');
   }
 
   Resetpassword(obj: MainUserDetails) {
@@ -128,7 +123,7 @@ export class AuthenticationService {
   getUser(id: Guid | undefined) {
     this.http.get(`${environment.URL}User/` + id).subscribe({
       next: (res: any) => {
-        localStorage.setItem('user', JSON.stringify(res));
+        CacheInfo.get("currentUser",JSON.stringify(res));
       },
       error: (e) => console.error(e),
     });
@@ -163,5 +158,8 @@ export class AuthenticationService {
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log('error', error));
+  }
+  SetHeaderLabel(label:any) {
+    this.HeaderLabel.next(label);
   }
 }

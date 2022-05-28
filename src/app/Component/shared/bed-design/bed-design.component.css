@@ -1,0 +1,154 @@
+.floorDiv {
+  width: 100%;
+  height: 100%;
+  margin: 0px 0px 40px 0px;
+  border: 1px solid black;
+}
+
+.roomDiv {
+  width: 100%;
+  height: 100%;
+  margin: 10px 0px 0px 0px;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.bedDiv {
+  width: 100px;
+  height: 100%;
+  margin: 10px 0 0 10px;
+  transition: all 100ms ease-in-out;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border: 2px solid green;
+  border-radius: 10px;
+}
+
+#mainDiv {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 2em 0em;
+}
+
+.bedDivicon {
+  width: 12px;
+  height: 30px;
+  margin: 0 10px;
+  border: 2px solid green;
+  border-radius: 10px;
+  display: inline-flex;
+  background-color: white;
+}
+
+#iconId {
+  max-width: 25px;
+}
+
+img {
+  width: 24px;
+  height: 20px;
+}
+
+.selected {
+  background-color: green;
+}
+
+.selected #nameSpan,#showDiv.allocated #nameSpan,.selected i,#showDiv.unavailable #nameSpan{
+  color: white;
+}
+
+#showDiv.unavailable i,#showDiv.allocated i{
+  color: white;
+}
+
+
+#showDiv {
+  height: 100%;
+  width: 100%;
+}
+
+#nameSpan {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  font-weight: 500;
+  text-align: center;
+}
+
+i.fas{
+  margin: 6px;
+}
+i.lg-icon{
+  font-size: 30px;
+  margin-left: 16px;
+}
+
+
+.bedDiv:hover {
+  transform: scale(1.2);
+}
+
+#showDiv.allocated{
+   background-color: red;
+}
+
+#operationsDiv{
+  width: 90%;
+  float: left;
+}
+#infoDiv{
+  width: 10% !important;
+    float: left;
+    display: grid;
+}
+
+#infoDiv .available{
+  background-color: white;
+    color: white;
+    border: 1px solid black;
+}
+
+#infoDiv .allocated{
+  background-color: red;
+    color: red;
+    border: 1px solid black;
+}
+
+#infoDiv .selected{
+  background-color: green;
+    color: green;
+    border: 1px solid black;
+}
+
+#infoDiv .unavailable{
+  background-color: gray;
+    color: gray;
+    border: 1px solid black;
+}
+
+.bedDiv  .allocated{
+  background-color: red;
+    color: red;
+}
+
+.bedDiv  .selected{
+  background-color: green;
+    color: green;
+}
+
+.bedDiv  .unavailable{
+  background-color: gray;
+    color: gray;
+}
+
+.bedDiv.selected .allocated{
+  background-color: green !important;
+  color: green !important;
+}

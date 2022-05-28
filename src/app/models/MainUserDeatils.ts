@@ -16,6 +16,7 @@ export class MainUserDetails {
 
     public IsFirstLogIn: boolean,
 
-    public NoOfAttempts: number //public RoleId :Guid
+    public NoOfAttempts: number, //public RoleId :Guid
+    public Token?: string,
   ) {}
 }

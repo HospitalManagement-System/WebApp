@@ -1,0 +1,52 @@
+<div style="width: 100%;">
+  <div id='operationsDiv'>
+    <i (click)="AddFloor()" class="fas fa-plus lg-icon" [attr.title]='"Add Floor"' *ngIf="isAdmin"></i>
+    <i (click)="Transfer()" class="fas fa-random lg-icon" [attr.title]='"Transfer"' *ngIf="!NOData"></i>
+    <i (click)="AllocateBed()" class="fa fa-arrow-circle-o-down lg-icon"  [attr.title]='"Allocate"' *ngIf="!NOData"></i>
+    <i (click)="ApplyChange(-1,-1,-1,true,$event)" class="fas fa-filter lg-icon" [attr.title]='"Filter"' *ngIf="!NOData"></i>
+  </div>  
+  <div id="infoDiv">
+      <span style="float: right;"><i class="fa fa-square available"></i> Available</span>
+      <span style="float: right;"><i class="fa fa-square unavailable"></i> UnAvailable</span>
+      <span style="float: right;"><i class="fa fa-square allocated"></i> Allocated</span> 
+      <span style="float: right;"><i class="fa fa-square selected"></i> Selected</span> 
+  </div>
+</div>
+
+
+<h1 *ngIf="NOData" style="text-align: center;">No Data to Display</h1>
+<div id="mainDiv">
+  <div class="floorDiv" *ngFor="let n1 of floors;let i = index;" [attr.details]="getDetails(floors[i])">
+    <div id="showDiv" style="text-align: center;">
+      <span id="nameSpan" style="font-size: 20px;">{{floors[i].fullName}}</span>
+      <span *ngIf="isAdmin">
+        <i (click)="AddRoom(i)" class="fas fa-plus"></i>
+        <i (click)="ApplyChange(i,-1,-1,false,$event)" class="fas fa-edit"></i>
+      </span>
+    </div>
+    <div class="roomDiv" *ngFor="let n2 of floors[i].rooms;let j = 'index+1';"
+      [attr.details]="getDetails(floors[i].rooms[j-1])">
+      <div id="showDiv" style="text-align: center;">
+        <span id="nameSpan" style="font-size: 20px;">{{floors[i].rooms[j-1].fullName}}  ({{getEnumData(floors[i].rooms[j-1].roomType,false)}})</span>
+        <span *ngIf="isAdmin">
+          <i (click)="AddBed(i,j-1)" class="fas fa-plus"></i>
+          <i (click)="ApplyChange(i,j-1,-1,false,$event)" class="fas fa-edit"></i>
+        </span>
+      </div>
+      <div class="bedDiv" *ngFor="let n3 of floors[i].rooms[j-1].beds;let k = 'index+1';"
+        [attr.details]="getDetails(floors[i].rooms[j-1].beds[k-1])" (click)="selectBed($event);"
+        matTooltip="{{getEnumData(floors[i].rooms[j-1].beds[k-1].bedType,true)}} {{' - '}} {{floors[i].rooms[j-1].beds[k-1].isAvilable ? 'Avilable' : 'Not Avilable'}} {{' - '}} {{floors[i].rooms[j-1].beds[k-1].bedCost | currency:'INR':true}}">
+        <div id="showDiv" [ngClass]="getBedStatus(floors[i].rooms[j-1].beds[k-1])">
+          <span id="nameSpan" style="display: block;">{{floors[i].rooms[j-1].beds[k-1].fullName}}</span>
+          <div *ngIf="isAdmin">
+            <span class="bedDivicon"></span>
+            <i (click)="ApplyChange(i,j-1,k-1,false,$event)" style="float: right;" class="fas fa-edit"></i>
+          </div>
+          <span *ngIf="!isAdmin && floors[i].rooms[j-1].beds[k-1].isAvilable">
+            <span class="bedDivicon"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

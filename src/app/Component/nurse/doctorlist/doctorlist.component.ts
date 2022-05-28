@@ -13,6 +13,8 @@ import { BookAppointmentService } from 'src/app/Services/BookAppointment/book-ap
 import { Employee, Physician } from 'src/app/models/patient.model';
 import { PhysicianService } from 'src/app/Services/Physician/physician.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 
 @Component({
   selector: 'app-doctorlist',
@@ -51,7 +53,6 @@ export class DoctorlistComponent implements OnInit {
     this.appoiService.getDoctorListData().subscribe(data => {
       this.dataSource1 = new MatTableDataSource(data)
       this.dataSource1.paginator = this.paginator;
-      debugger
       console.log(this.dataSource1)
 
     });

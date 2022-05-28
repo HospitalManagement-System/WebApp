@@ -1,0 +1,7 @@
+.mat-form-field {
+    width: 240px;
+}
+
+::ng-deep .mat-dialog-title{
+    font-weight: bold !important;
+}

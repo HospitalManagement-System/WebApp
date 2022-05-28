@@ -1,0 +1,11 @@
+<mat-toolbar style="background-image: linear-gradient(to right, rgb(215, 233, 245), rgb(23, 118, 177));">
+  <mat-toolbar-row class="justify-content-between">
+    <i class="fa fa-bars" (click)="toggleSidebar()"></i>
+    <h1>{{HeaderLabel}}</h1>
+    <div style="float: left;display: flex;">
+      <i class="material-icons p-2 fa fa-user-circle-o text-white pointer">
+        Hello</i>
+      <i class="material-icons p-2 text-white pointer" (click)="logOut()">logout</i>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CacheInfo } from 'src/app/Component/shared/CacheInfo';
 import { Product } from 'src/app/models/appointment';
 import { Attendance, Specialization } from 'src/app/models/Attendance';
 import { Bardata } from 'src/app/models/bardata';
@@ -12,20 +13,22 @@ import { Appointment } from '../Url';
   providedIn: 'root',
 })
 export class PhysicianService {
+  //Url Route
+  baseUrl = environment.URL;
   constructor(private http: HttpClient) {}
-  private readonly API_URL_NEXTPATIENT = `${environment.URL}PhysicianDashboard/GetNextAppointment`;
+  private readonly API_URL_NEXTPATIENT = `${this.baseUrl}PhysicianDashboard/GetNextAppointment`;
   // baseUrl = environment.AppointmentUrl;
   appointmentData: any;
 
   addPhysicianPost(employee: Attendance) {
-    const token = localStorage.getItem('token');
+    const token = JSON.parse(CacheInfo.get("currentUser")).token;
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     if (token != null) {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     var raw = JSON.stringify(employee);
-    return fetch(`${environment.URL}PhysicianDashboard`, {
+    return fetch(`${this.baseUrl}PhysicianDashboard`, {
       method: 'POST',
       headers: myHeaders,
       body: raw,
@@ -34,7 +37,7 @@ export class PhysicianService {
   }
 
   // getPatient() {
-  //   return this.http.get<UserDetails[]>('`${environment.URL}api/AdminUserInfo/GetPatientUsers');
+  //   return this.http.get<UserDetails[]>('`${this.baseUrl}api/AdminUserInfo/GetPatientUsers');
   // }
 
   //   getAppointmentData(): Observable<Booking[]>{
@@ -44,7 +47,7 @@ export class PhysicianService {
 
   GetAllSpecialization() {
     return this.http.get<Specialization[]>(
-      `${environment.URL}PhysicianDashboard/GetAllSpecialization`
+      `${this.baseUrl}PhysicianDashboard/GetAllSpecialization`
     );
   }
 
@@ -54,7 +57,7 @@ export class PhysicianService {
 
   GetAppoinmentRequest(id: string, date: string) {
     return this.http.get<any[]>(
-      `${environment.URL}Appointments/GetEditBookAppointmentDetails/${id}`
+      `${this.baseUrl}Appointments/GetEditBookAppointmentDetails/${id}`
     );
   }
 

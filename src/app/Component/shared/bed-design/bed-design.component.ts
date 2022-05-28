@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { Floor, Room, Bed, BedManagement, BedType, fromType, bedRequest, RoomType } from 'src/app/models/bedallocate';
+import { Floor, Room, Bed, BedManagement, BedType, fromType, bedRequest, RoomType, BedFunctions } from 'src/app/models/bedallocate';
 import { BedmangeService } from 'src/app/Services/Bed/bedmange.service';
-import { BedAllocateUserComponent } from '../../bed/bed-allocate-user/bed-allocate-user.component';
 import { BedAllocateComponent } from '../../bed/bed-allocate/bed-allocate.component';
+import { BedDetailsComponent } from '../../bed/bed-details/bed-details.component';
 import { CacheInfo } from '../CacheInfo';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
+import { BillInfoComponent } from '../bill-info/bill-info.component';
 declare var $: any;
 @Component({
   selector: 'app-bed-design',
@@ -57,7 +60,8 @@ export class BedDesignComponent implements OnInit {
       isAvilable: true,
       bedType: BedType.General_Bed,
       fullName: "Floor" + floorId,
-      roomType: RoomType.General_ward
+      roomType: RoomType.General_ward,
+      bedCost: -1
     };
     this.AddDetails(BedManagement);
   }
@@ -70,7 +74,8 @@ export class BedDesignComponent implements OnInit {
       isAvilable: true,
       bedType: BedType.General_Bed,
       fullName: "Room" + this.floors[i].rooms.length,
-      roomType: RoomType.General_ward
+      roomType: RoomType.General_ward,
+      bedCost: -1
     };
     this.AddDetails(BedManagement);
   }
@@ -83,7 +88,8 @@ export class BedDesignComponent implements OnInit {
       isAvilable: true,
       bedType: BedType.General_Bed,
       fullName: "Bed" + this.floors[i].rooms[j].beds.length,
-      roomType: RoomType.General_ward
+      roomType: RoomType.General_ward,
+      bedCost: 1000
     };
     this.AddDetails(BedManagement);
   }
@@ -97,7 +103,7 @@ export class BedDesignComponent implements OnInit {
   getDetails(details: any) {
     return JSON.stringify(details);
   }
-  ApplyChange(floor: number, room: number, bed: number, forFilter: boolean) {
+  ApplyChange(floor: number, room: number, bed: number, forFilter: boolean,event: any) {
     let bedReq = new bedRequest();
     if (forFilter) {
       bedReq.bedDetails = new BedManagement();
@@ -109,13 +115,13 @@ export class BedDesignComponent implements OnInit {
       bedReq.bedDetails = this.AllBeds.filter(x => x.floor == floor && x.room == room && x.bed == bed)[0];
     }
     bedReq.fromType = forFilter ? fromType.filter : fromType.allocate;
-    let width = "50%";
+    let width = "60%";
     let height = "40%";
     if (forFilter) {
       width = "60%";
       height = "50%";
     }
-    const dialogRef = this.dialog.open(BedAllocateComponent, {
+    const dialogRef = this.dialog.open(BedDetailsComponent, {
       width: width,
       height: height,
       data: bedReq
@@ -179,6 +185,7 @@ export class BedDesignComponent implements OnInit {
       else
         this.ngOnInit();
     });
+    event.stopImmediatePropagation();
   }
   AllocateBedForUser(){
     let bedReq = new bedRequest();
@@ -186,17 +193,31 @@ export class BedDesignComponent implements OnInit {
     bedReq.fromType = fromType.allocate;
     let width = "100%";
     let height = "100%";
-    const dialogRef = this.dialog.open(BedAllocateUserComponent, {
+    const dialogRef = this.dialog.open(BedAllocateComponent, {
       width: width,
       height: height,
       data: bedReq
     });
     dialogRef.afterClosed().subscribe(result => {
+      bedReq.bedDetails.patientId = result;
+      const dialogRef = this.dialog.open(BillInfoComponent, {
+        width: width,
+        height: height,
+        data: bedReq
+      });
+      dialogRef.afterClosed().subscribe(result => {
+         this.ngOnInit();
+      });
     });
   }
   AllocateBed() {
     if(this.selectedBed.length > 0){
-      this.AllocateBedForUser();
+      if(BedFunctions.hasPatient(this.selectedBed[0])){
+        alert("Bed is Allocated Already");
+      }
+      else{
+        this.AllocateBedForUser();
+      }
     }
     else{
       alert("Please Select Bed");
@@ -212,11 +233,18 @@ export class BedDesignComponent implements OnInit {
            alert("Please Select 2nd Bed to be Transfered");
            return;
         }
+        else{
+           alert("Transfer is activated");
+        }
         break;
       case 2:
-        alert("Transfer done");
-        this.selectedBed = [];
-        this.ngOnInit();     
+        this.service.TransferBedPatient(this.selectedBed).then((result) => {
+          if (result != null) {
+            alert("Transfer is Done");
+            this.selectedBed = [];
+            this.ngOnInit();
+          }
+        });  
     }
     this.isMulti = !this.isMulti;
   }
@@ -227,8 +255,9 @@ export class BedDesignComponent implements OnInit {
   selectBed(event: any) {
     let bedDiv = $(event.target).hasClass("bedDiv") ? $(event.target) : $(event.target).parents(".bedDiv");
     let bedDetails = JSON.parse(bedDiv.attr("details"));
-    if(!bedDetails.isAvilable && !this.isAdmin){
-      alert("Bed is Unavilable");
+    if(!bedDetails.isAvilable){
+      alert("Bed can't be Allocated");
+      event.stopImmediatePropagation();
       return;
     }
     if (this.isMulti && bedDiv.parents("#mainDiv").find(".selected").length == 2) {
@@ -259,6 +288,7 @@ export class BedDesignComponent implements OnInit {
       bedDiv.addClass("selected");
       this.selectedBed.push(bedDetails);
     }
+    event.stopImmediatePropagation();
   }
   DesignBed() {
     this.floors = [];
@@ -269,6 +299,8 @@ export class BedDesignComponent implements OnInit {
       let isAvilable = this.AllBeds[i].isAvilable;
       let bedType = this.AllBeds[i].bedType;
       let fullName = this.AllBeds[i].fullName;
+      let bedCost = this.AllBeds[i].bedCost;
+      let patientId = this.AllBeds[i].patientId;
       let floorDetails = this.AllBeds.filter(x => x.floor == floor && x.room == -1 && x.bed == -1)[0];
       let roomDetails = this.AllBeds.filter(x => x.floor == floor && x.room == room && x.bed == -1)[0];
       if (typeof this.floors[floor] == "undefined") {
@@ -294,7 +326,22 @@ export class BedDesignComponent implements OnInit {
       this.floors[floor].rooms[room].beds[bed].floor = floorDetails.floor;
       this.floors[floor].rooms[room].beds[bed].room = roomDetails.room;
       this.floors[floor].rooms[room].beds[bed].bed = bed;
+      this.floors[floor].rooms[room].beds[bed].bedCost = bedCost;
+      this.floors[floor].rooms[room].beds[bed].patientId = patientId;
     }
     this.NOData = this.AllBeds.length == 0 ? true : false
+  }
+  getBedStatus(bed:Bed):string{
+    let status = "available";
+    if(bed.isAvilable && !BedFunctions.hasPatient(bed)){
+      status = "available";
+    }
+    else if(!bed.isAvilable){
+      status = "unavailable";
+    }
+    else if(bed.isAvilable && BedFunctions.hasPatient(bed)){
+      status = "allocated";
+    }
+    return status;
   }
 }

@@ -67,18 +67,18 @@ export class AdminService {
   GetListofData() {
     // return this.http.get<EventMap[]>(this.baseUrl + Admin.Event);
     return this.http.get<EventMap[]>(
-      `${environment.URL}Appointments/GetAllAppointments`
+      `${this.baseUrl}Appointments/GetAllAppointments`
     );
   }
 
   GetListofDataById(Id: string, Role: string) {
     if (Role == 'ADMIN' || Role == 'NURSE') {
       return this.http.get<EventMap[]>(
-        `${environment.URL}Appointments/GetAllAppointments`
+        `${this.baseUrl}Appointments/GetAllAppointments`
       );
     } else {
       return this.http.get<EventMap[]>(
-        `${environment.URL}Appointments/GetAllAppointmentsById/${Id}?Role=${Role}`
+        `${this.baseUrl}Appointments/GetAllAppointmentsById/${Id}?Role=${Role}`
       );
     }
   }
@@ -115,40 +115,40 @@ export class AdminService {
 
   Gender() {
     return this.http.get<any>(
-      `${environment.URL}MasterData/GetGender`
+      `${this.baseUrl}MasterData/GetGender`
     );
   }
 
   //Designation
   Specialization(type: any) {
     return this.http.get<any>(
-      `${environment.URL}MasterData/Specialization/${type}`
+      `${this.baseUrl}MasterData/Specialization/${type}`
     );
   }
 
   //Designation
   Designation(type: any) {
     return this.http.get<any>(
-      `${environment.URL}MasterData/Specialization/${type}`
+      `${this.baseUrl}MasterData/Specialization/${type}`
     );
   }
 
   //Department
   Department(type: any) {
     return this.http.get<any>(
-      `${environment.URL}MasterData/GetDesignation/${type}`
+      `${this.baseUrl}MasterData/GetDesignation/${type}`
     );
   }
 
   //Physician/Nurse/EduactionList
   EduactionList(type: any) {
     return this.http.get<any>(
-      `${environment.URL}MasterData/GetEducation/${type}`
+      `${this.baseUrl}MasterData/GetEducation/${type}`
     );
   }
 
   TestData(): Observable<any> {
-    return this.http.get<any>(`${environment.URL}Appointments`);
+    return this.http.get<any>(`${this.baseUrl}Appointments`);
   }
 
   PostPatient(value: any) {
@@ -160,7 +160,7 @@ export class AdminService {
     }
     var raw = JSON.stringify(value);
 
-    return fetch(`${environment.URL}EmployeRegister`, {
+    return fetch(`${this.baseUrl}EmployeRegister`, {
       method: 'POST',
       headers: myHeaders,
       body: raw,

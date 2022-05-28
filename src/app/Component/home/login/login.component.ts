@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
   userDetail!: MainUserDetails | undefined;
   count: number = 0;
   errorstatus!: boolean;
-
   constructor(
     private location: Location,
     private formBuilder: FormBuilder,

@@ -1,22 +1,4 @@
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Add {{ Type }}</h1>
-        </div>
-        <!-- <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Advanced Form</li>
-          </ol>
-        </div> -->
-      </div>
-    </div>
-    <!-- /.container-fluid -->
-  </section>
-
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
@@ -211,6 +193,17 @@
                     "
                     style="color: red"
                     >Please Select Education</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label>Cost Per Visit</label>
+                  <input type="number" formControlName="costPerVisit">
+                  <span
+                    *ngIf="
+                      submitted && this.Physician.controls['costPerVisit'].invalid
+                    "
+                    style="color: red"
+                    >Please Select Cost Per Visit</span
                   >
                 </div>
                 <div class="form-group">

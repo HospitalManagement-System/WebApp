@@ -19,6 +19,8 @@ import { procedure } from 'src/app/models/procedure-model';
 import { Role } from 'src/app/models/Role';
 import { patientdetails } from 'src/app/Services/patientdetails.service';
 import { CacheInfo } from '../../shared/CacheInfo';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 
 import { PreviouspatientvisitdetailsComponent } from '../previouspatientvisitdetails/previouspatientvisitdetails.component';
 

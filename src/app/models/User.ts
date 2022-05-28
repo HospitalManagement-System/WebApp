@@ -30,6 +30,7 @@ export class UserDetals{
   Token?: string;
   loggedIn: any;
   NoOfAttempts!: number;
+  CostPerVisit!:number;
 }
 
 // Designation: null

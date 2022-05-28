@@ -13,6 +13,8 @@ function _window(): any {
 })
 export class PaymentService {
   constructor(private http: HttpClient) {}
+  //Url Route
+  baseUrl = environment.URL;
 
   get nativeWindow(): any {
     return _window();
@@ -27,7 +29,7 @@ export class PaymentService {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     return fetch(
-      `${environment.URL}PaymentApi/CreateOrder/${PatientId}?Amount=${amount}`,
+      `${this.baseUrl}PaymentApi/CreateOrder/${PatientId}?Amount=${amount}`,
       {
         method: 'POST',
         headers: myHeaders,
@@ -44,7 +46,7 @@ export class PaymentService {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     return fetch(
-      `${environment.URL}PaymentApi/Complete/${PatientId}?paymentId=${paymentId}&orderId=${orderId}`,
+      `${this.baseUrl}PaymentApi/Complete/${PatientId}?paymentId=${paymentId}&orderId=${orderId}`,
       {
         method: 'POST',
         headers: myHeaders,
@@ -61,7 +63,7 @@ export class PaymentService {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     return fetch(
-      `${environment.URL}PaymentApi/GetSubscribedData/${PatientId}`,
+      `${this.baseUrl}PaymentApi/GetSubscribedData/${PatientId}`,
       {
         method: 'GET',
         headers: myHeaders,

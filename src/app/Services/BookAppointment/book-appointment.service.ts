@@ -10,44 +10,46 @@ import { Booking, Diagnosics, Physician } from '../../models/patient.model';
 })
 export class BookAppointmentService {
   constructor(private http: HttpClient) {}
+  //Url Route
+  baseUrl = environment.URL;
 
   //GetBookSlot
   GetBookSlot(id: string, date: string) {
     return this.http.get<any[]>(
-      `${environment.URL}Appointments/GetBookSlots/${id}?appointmentdateTime=${date}`
+      `${this.baseUrl}Appointments/GetBookSlots/${id}?appointmentdateTime=${date}`
     );
   }
 
   //GetDiagnosics
   GetDiagnosics() {
     return this.http.get<Diagnosics[]>(
-      `${environment.URL}Diagnoses/GetDiagnosisData`
+      `${this.baseUrl}Diagnoses/GetDiagnosisData`
     );
   }
 
   GetSpecialization() {
     return this.http.get<Diagnosics[]>(
-      `${environment.URL}Appointments/Specialization`
+      `${this.baseUrl}Appointments/Specialization`
     );
   }
 
   //GEt Physician
   GetPhysician() {
     return this.http.get<Physician[]>(
-      `${environment.URL}Appointments/GetAllPhysician`
+      `${this.baseUrl}Appointments/GetAllPhysician`
     );
   }
 
   GetPhysicianById(Diagnosics: string) {
     return this.http.get<Physician[]>(
-      `${environment.URL}Appointments/GetPhysicianByDiagnosics/${Diagnosics}`
+      `${this.baseUrl}Appointments/GetPhysicianByDiagnosics/${Diagnosics}`
     );
   }
 
   //Get Time Slot
   GetAllocatedTimeSlot() {
     return this.http.get<Diagnosics[]>(
-      `${environment.URL}Diagnoses/GetDiagnosisData`
+      `${this.baseUrl}Diagnoses/GetDiagnosisData`
     );
   }
 
@@ -60,7 +62,7 @@ export class BookAppointmentService {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     var raw = JSON.stringify(value);
-    return fetch(`${environment.URL}Appointments`, {
+    return fetch(`${this.baseUrl}Appointments`, {
       method: 'POST',
       headers: myHeaders,
       body: raw,
@@ -77,7 +79,7 @@ export class BookAppointmentService {
     }
     var raw = JSON.stringify(value);
     return fetch(
-      `${environment.URL}Appointments/UpdateAppointments/${AppointmentId}`,
+      `${this.baseUrl}Appointments/UpdateAppointments/${AppointmentId}`,
       {
         method: 'PUT',
         headers: myHeaders,

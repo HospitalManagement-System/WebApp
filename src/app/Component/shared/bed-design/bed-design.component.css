@@ -59,7 +59,11 @@ img {
   background-color: green;
 }
 
-.selected #nameSpan{
+.selected #nameSpan,#showDiv.allocated #nameSpan,.selected i,#showDiv.unavailable #nameSpan{
+  color: white;
+}
+
+#showDiv.unavailable i,#showDiv.allocated i{
   color: white;
 }
 
@@ -89,4 +93,62 @@ i.lg-icon{
 
 .bedDiv:hover {
   transform: scale(1.2);
+}
+
+#showDiv.allocated{
+   background-color: red;
+}
+
+#operationsDiv{
+  width: 90%;
+  float: left;
+}
+#infoDiv{
+  width: 10% !important;
+    float: left;
+    display: grid;
+}
+
+#infoDiv .available{
+  background-color: white;
+    color: white;
+    border: 1px solid black;
+}
+
+#infoDiv .allocated{
+  background-color: red;
+    color: red;
+    border: 1px solid black;
+}
+
+#infoDiv .selected{
+  background-color: green;
+    color: green;
+    border: 1px solid black;
+}
+
+#infoDiv .unavailable{
+  background-color: gray;
+    color: gray;
+    border: 1px solid black;
+}
+
+.bedDiv  .allocated{
+  background-color: red;
+    color: red;
+}
+
+.bedDiv  .selected{
+  background-color: green;
+    color: green;
+}
+
+.bedDiv  .unavailable{
+  background-color: gray;
+    color: gray;
+}
+
+.bedDiv.selected .allocated{
+  background-color: green !important;
+  color: green !important;
 }

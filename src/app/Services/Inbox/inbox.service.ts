@@ -23,7 +23,7 @@ export class InboxService {
         myHeaders.append('Authorization', `Bearer ${token}`);
       }
       var raw = JSON.stringify(notes);
-      fetch(`${environment.URL}Notes`, {
+      fetch(`${this.baseUrl}Notes`, {
         method: 'POST',
         headers: myHeaders,
         body: raw,
@@ -51,7 +51,7 @@ export class InboxService {
   GetAppointmentByEmployeeId(id: Guid) {
     //https://localhost:44347/api/Appointments/GetAppointmentsByEmployeeId?
     return this.httpClient.get(
-      `${environment.URL}Appointments/GetAppointmentsByEmployeeId?id=` +
+      `${this.baseUrl}Appointments/GetAppointmentsByEmployeeId?id=` +
         id
     );
   }
@@ -65,7 +65,7 @@ export class InboxService {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     var raw = JSON.stringify(id);
-    fetch(`${environment.URL}Notes/`, {
+    fetch(`${this.baseUrl}Notes/`, {
       method: 'DELETE',
       headers: myHeaders,
       body: raw,

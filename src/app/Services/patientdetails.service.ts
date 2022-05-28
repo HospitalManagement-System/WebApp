@@ -6,7 +6,7 @@ import { catchError, map, observable, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CacheInfo } from '../Component/shared/CacheInfo';
 import { Allergy } from '../models/allergy-model';
-import { PatientdetailsDemo } from '../models/patientdetails-model';
+import { AllocatedPatientDetails, PatientdetailsDemo } from '../models/patientdetails-model';
 import { patientvisitdetails } from '../models/patientvisitdetails';
 import { Postal } from '../models/postal-model';
 import { Patient } from './Url';
@@ -23,16 +23,21 @@ export class patientdetails {
   private patientVisitDetailslist: patientvisitdetails[] = [];
   private allergyList: Allergy[] = [];
   baseUrl = environment.URL;
-  //patientdetailscreen
-  addPost(post: PatientdetailsDemo) {
-    this.http
-      .post(
-        `${environment.URL}Demographicsdetails/PostPatientdemographicsdetails`,
-        post
-      )
-      .subscribe((res) => {
-        console.log(res);
-      });
+
+  addpatient(value: AllocatedPatientDetails) {
+    const token = JSON.parse(CacheInfo.get("currentUser")).token;
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    if (token != null) {
+      myHeaders.append('Authorization', `Bearer ${token}`);
+    }
+    var raw = JSON.stringify(value);
+    return fetch(`${environment.URL}PatientDetails/PostAllocatedPatientDetails`, {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    });
   }
 
   fetchfrombackendfromid1(id: any) {
@@ -71,7 +76,7 @@ export class patientdetails {
     console.log(raw);
 
     return fetch(
-      `${environment.URL}Demographicsdetails/UpdateDemographic/${demoid}`,
+      `${this.baseUrl}Demographicsdetails/UpdateDemographic/${demoid}`,
       {
         method: 'PUT',
         headers: myHeaders,
@@ -97,7 +102,7 @@ export class patientdetails {
     if (token != null) {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
-    return fetch(`${environment.URL}Master/GetallAllergydetails`, {
+    return fetch(`${this.baseUrl}Master/GetallAllergydetails`, {
       method: 'GET',
       headers: myHeaders,
       redirect: 'follow',
@@ -111,7 +116,7 @@ export class patientdetails {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     return fetch(
-      `${environment.URL}Master/GetdetailsfromAllergytype?AllergyType=${AllergyType}`,
+      `${this.baseUrl}Master/GetdetailsfromAllergytype?AllergyType=${AllergyType}`,
       {
         method: 'GET',
         headers: myHeaders,
@@ -132,7 +137,7 @@ export class patientdetails {
     var raw = JSON.stringify(patientvisitobj);
     console.log(raw);
 
-    return fetch(`${environment.URL}PatientDetails`, {
+    return fetch(`${this.baseUrl}PatientDetails`, {
       method: 'POST',
       headers: myHeaders,
       body: raw,
@@ -153,7 +158,7 @@ export class patientdetails {
     var raw = JSON.stringify(patientvisitdetailsobj);
     console.log(raw);
     return fetch(
-      `${environment.URL}PatientDetails/PutPatientDetails?id=${visitid}`,
+      `${this.baseUrl}PatientDetails/PutPatientDetails?id=${visitid}`,
       {
         method: 'PUT',
         headers: myHeaders,
@@ -172,7 +177,7 @@ export class patientdetails {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     return fetch(
-      `${environment.URL}PatientDetails?Appointmentid=${id}`,
+      `${this.baseUrl}PatientDetails?Appointmentid=${id}`,
       {
         method: 'GET',
         headers: myHeaders,
@@ -185,7 +190,7 @@ export class patientdetails {
     // const getuser = localStorage.getItem('USerID');
 
     return this.http.get<any>(
-      `${environment.URL}Master/Getdiagnosisdetails`
+      `${this.baseUrl}Master/Getdiagnosisdetails`
     );
   }
   GetRole(id: any) {
@@ -195,7 +200,7 @@ export class patientdetails {
     if (token != null) {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
-    return fetch(`${environment.URL}Master/GetRole?id=${id}`, {
+    return fetch(`${this.baseUrl}Master/GetRole?id=${id}`, {
       method: 'GET',
       headers: myHeaders,
       redirect: 'follow',
@@ -203,17 +208,17 @@ export class patientdetails {
   }
   GetDiagnosisdetails() {
     return this.http.get<any>(
-      `${environment.URL}Master/Getdiagnosisdetails`
+      `${this.baseUrl}Master/Getdiagnosisdetails`
     );
   }
   GetProceduredetails() {
     return this.http.get<any>(
-      `${environment.URL}Master/Getproceduredetails`
+      `${this.baseUrl}Master/Getproceduredetails`
     );
   }
   GetMedicationdetails() {
     return this.http.get<any>(
-      `${environment.URL}Master/Getdrugdetails`
+      `${this.baseUrl}Master/Getdrugdetails`
     );
   }
   GetidfromDiagnosisdetails(diagnosisdetails: string) {
@@ -235,7 +240,7 @@ export class patientdetails {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     return fetch(
-      `${environment.URL}Master/GetPatientId?userid=${UserID}`,
+      `${this.baseUrl}Master/GetPatientId?userid=${UserID}`,
       {
         method: 'GET',
         headers: myHeaders,

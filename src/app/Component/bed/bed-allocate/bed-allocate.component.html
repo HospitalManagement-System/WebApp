@@ -1,45 +1,119 @@
-<h1 mat-dialog-title>
-  <h1 *ngIf="data.fromType==1">Filter for</h1>
-  <h1 *ngIf="data.fromType==2">Details Of</h1>
-</h1>
+<div>
+  <h1 mat-dialog-title> Allocate bed </h1>
+</div>
 <div mat-dialog-content>
-  <div *ngIf="(bedManagement.bed != -1 || data.fromType==1)" style="display: inline-block;">
-    <mat-form-field appearance="fill">
-      <mat-label>Bed Type</mat-label>
-      <select matNativeControl [(ngModel)]="bedManagement.bedType">
-        <option value="-1" selected></option>
-        <option *ngFor="let bedtype of bedEnums" [value]="bedtype.key">
-          {{bedtype.value}}
-        </option>
-      </select>
+  <form [formGroup]="allocateForm">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <mat-select formControlName="title">
+          <mat-option *ngFor="let item of titleList" [value]="item.value">
+            {{ item.value }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="isFieldInvalid('title')">
+        Title is Required
+      </mat-error>
     </mat-form-field>
-  </div>
-  <div *ngIf="((bedManagement.room != -1 && bedManagement.bed == -1) || data.fromType==1 )" style="display: inline-block;">
-    <mat-form-field appearance="fill">
-      <mat-label>Room Type</mat-label>
-      <select matNativeControl [(ngModel)]="bedManagement.roomType">
-        <option value="-1" selected></option>
-        <option *ngFor="let roomtype of roomEnums" [value]="roomtype.key">
-          {{roomtype.value}}
-        </option>
-      </select>
+
+    
+
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" autocomplete="off">
+      <mat-error *ngIf="isFieldInvalid('name')">
+        name is Required
+      </mat-error>
     </mat-form-field>
-  </div>
-  <mat-slide-toggle [(ngModel)]="bedManagement.isAvilable" style="margin-top: 20px;">is Avilable</mat-slide-toggle>
-  <mat-form-field appearance="fill">
-    <mat-label>Name : </mat-label>
-    <input matInput placeholder="name" [(ngModel)]="bedManagement.fullName">
-  </mat-form-field>
-  <div *ngIf="data.fromType==1" style="display: inline-block;">
-  <mat-form-field appearance="fill">
-    <mat-label></mat-label>
-    <select matNativeControl [(ngModel)]="FilterAndOr">
-      <option value="1" selected>And</option>
-      <option value="2" selected>Or</option>
-    </select>
-  </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Age</mat-label>
+      <input type="number" matInput formControlName="age" autocomplete="off">
+      <mat-error *ngIf="isFieldInvalid('age')">
+        Age is Required
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Date of Birth:</mat-label>
+      <input matInput [matDatepicker]="dp3" formControlName="dob">
+      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3 ></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Gender</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option *ngFor="let item of genderList" [value]="item.value">
+          {{ item.value }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="isFieldInvalid('gender')">
+        gender is Required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>PinCode</mat-label>
+      <input matInput formControlName="pinCode" autocomplete="off" type="number">
+      <mat-error *ngIf="isFieldInvalid('pinCode')">
+        PinCode is Required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" autocomplete="off" type="number">
+      <mat-error *ngIf="isFieldInvalid('phone')">
+        Phone is Required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Alternative Phone</mat-label>
+      <input matInput formControlName="alternativephone" autocomplete="off" type="number">
+      <mat-error *ngIf="isFieldInvalid('alternativephone')">
+        Alternative Phone is Required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Diagnosis</mat-label>
+      <mat-select (selectionChange)="changeDiagnosics($event)" formControlName="diagnosicsName">
+        <mat-option>Select</mat-option>
+        <mat-option *ngFor="let item of diagnosics" [value]="item.value">
+          {{ item.value }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="isFieldInvalid('diagnosicsName')">
+        Diagnosis is Required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label style="color: black">Physician</mat-label>
+      <mat-select formControlName="phsicianId">
+        <mat-option>Select</mat-option>
+        <mat-option *ngFor="let item of physician" [value]="item.id">
+          {{ item.physicianName }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="isFieldInvalid('phsicianId')">
+        phsician Name is Required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Address</mat-label>
+      <textarea matInput formControlName="address" autocomplete="off"></textarea>
+        <mat-error *ngIf="isFieldInvalid('address')">
+          Address is Required
+        </mat-error>
+    </mat-form-field>
+
+  </form>
 </div>
-</div>
-<div mat-dialog-actions style="float: right;">
-  <button mat-raised-button color="primary" (click)="Apply()"> {{data.fromType==2 ? "Save" : "Filter"}} </button>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="Allocate()"> Allocate </button>
 </div>

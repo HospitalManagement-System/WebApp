@@ -18,7 +18,8 @@ export class AuthenticationService {
   public currentUser: Observable<User>;
   private loggedIn = new BehaviorSubject<boolean>(false); // {1}
   private canGo = false;
-
+  private HeaderLabel = new BehaviorSubject<string>('');
+  HeaderLabelValue = this.HeaderLabel.asObservable();
   constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(
       typeof CacheInfo.get("currentUser")!="undefined" ? JSON.parse(CacheInfo.get("currentUser")!) : new User()
@@ -157,5 +158,8 @@ export class AuthenticationService {
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log('error', error));
+  }
+  SetHeaderLabel(label:any) {
+    this.HeaderLabel.next(label);
   }
 }

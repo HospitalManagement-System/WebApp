@@ -11,6 +11,8 @@ import { Changepassword } from 'src/app/models/changepassword';
 import { User } from 'src/app/models/User';
 import { AuthenticationService } from 'src/app/Services';
 import { CacheInfo } from '../../shared/CacheInfo';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 
 @Component({
   selector: 'app-changepassword',

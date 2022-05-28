@@ -76,18 +76,6 @@ export class NavMenuComponent implements OnInit {
     return this.currentUser && this.currentUser.role === Role.Nurse;
   }
 
-  get isRECEPTIONAIST() {
-    //return true;
-    return this.currentUser && this.currentUser.role === Role.RECEPTIONIST;
-  }
-
-
-  
-  get isFINANCE() {
-    //return true;
-    return this.currentUser && this.currentUser.role === Role.FINANCE;
-  }
-
  
   
 }

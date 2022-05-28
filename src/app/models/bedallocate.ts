@@ -29,13 +29,16 @@ export class Bed{
   floor:number;
   room:number;
   bed :number;
+  bedCost:number;
+  patientId?:string;
   constructor(){
     this.bedType = BedType.General_Bed;
     this.isAvilable = true;
-    this.fullName="";
+    this.fullName = this.patientId = "";
     this.floor =-1;
     this.room = -1;
     this.bed =-1;
+    this.bedCost = 0;
   }
 }
 
@@ -48,6 +51,8 @@ export class BedManagement
      bedType: number
      roomType:number
      fullName :string
+     bedCost :number
+     patientId?:string;
      constructor(){
        this.floor = 0;
        this.room = 0;
@@ -55,7 +60,8 @@ export class BedManagement
        this.isAvilable = true;
        this.bedType = BedType.General_Bed;
        this.roomType = RoomType.General_ward;
-       this.fullName = "";
+       this.fullName = this.patientId = "";
+       this.bedCost = 0;
      }
 }
 
@@ -84,4 +90,14 @@ export class bedRequest{
 export enum fromType{
   filter = 1,
   allocate = 2
+}
+
+export class BedFunctions{
+  static hasPatient(bed:Bed): boolean {
+    let hasPatient = false;
+    if(bed.patientId?.substring(8,0) != '00000000'){
+      hasPatient = true;
+    }
+    return hasPatient;
+  }
 }

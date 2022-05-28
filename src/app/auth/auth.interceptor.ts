@@ -6,17 +6,19 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { finalize, Observable, tap } from 'rxjs';
 import { CacheInfo } from '../Component/shared/CacheInfo';
+import { LoaderService } from '../Services/loader.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router,private loader: LoaderService) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    this.loader.show()
     console.log('Intercept');    
     const token = CacheInfo.get("currentUser")!=null ? JSON.parse(CacheInfo.get("currentUser")).token : null;
     if (token != null) {
@@ -24,6 +26,15 @@ export class AuthInterceptor implements HttpInterceptor {
         setHeaders: { Authorization: `Bearer ${token}` },
       });
     }
-    return next.handle(req);
+    return next.handle(req).pipe(
+      finalize(() => {
+       setTimeout(() => {
+        this.hide();
+      }, 5000);
+      })
+    );
+  }
+  hide(){
+    this.loader.hide()
   }
 }

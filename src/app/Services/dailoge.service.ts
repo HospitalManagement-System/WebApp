@@ -19,15 +19,18 @@ export class DailogeService {
   constructor(private http: HttpClient) {}
 
   //Url Route
+  baseUrl = environment.URL;
+
+  //Url Route
   private readonly BAR_URL =
-    `${environment.URL}NurseDash/GetallBarChartDetails`;
+    `${this.baseUrl}NurseDash/GetallBarChartDetails`;
   private readonly UP_URL =
-    `${environment.URL}NurseDash/GetNurseUpComingAppointment`;
+    `${this.baseUrl}NurseDash/GetNurseUpComingAppointment`;
 
   private readonly API_URL1 =
-    `${environment.URL}PhysicianDashboard/GetAvailablePhysicianDetails`;
-  private readonly BAR_URL1 = `${environment.URL}BarList`;
-  baseUrl = environment.URL;
+    `${this.baseUrl}PhysicianDashboard/GetAvailablePhysicianDetails`;
+  private readonly BAR_URL1 = `${this.baseUrl}BarList`;
+
   appointmentData: any;
   id:any;
 
@@ -35,12 +38,12 @@ export class DailogeService {
 
   getAppointmentData(): Observable<Product[]> {
     return this.http.get<Product[]>(
-      '`${environment.URL}api/NurseDash/GetNurseAppointment'
+      `${this.baseUrl}api/NurseDash/GetNurseAppointment`
     );
   }
   uploadMastertData(formdata: FormData): Observable<any> {
     return this.http.post(
-      `${environment.URL}Master/ImportMasters`,
+      `${this.baseUrl}Master/ImportMasters`,
       formdata,
       { reportProgress: true, observe: 'events' }
     );
@@ -55,7 +58,7 @@ export class DailogeService {
     // }
     // var raw = JSON.stringify(product);
     // return fetch(
-    //   `${environment.URL}api/NurseDash/UpdateUpcomingAppoinmets?Id=${id}`,
+    //   `${this.baseUrl}api/NurseDash/UpdateUpcomingAppoinmets?Id=${id}`,
     //   {
     //     method: 'PUT',
     //     headers: myHeaders,
@@ -63,9 +66,9 @@ export class DailogeService {
     //     redirect: 'follow',
     //   }
     // );
-    return this.http.put<any>(`${environment.URL}NurseDash/UpdateUpcomingAppoinmets?Id=`+id, product);
+    return this.http.put<any>(`${this.baseUrl}NurseDash/UpdateUpcomingAppoinmets?Id=`+id, product);
   }
-  // this.http.post('`${environment.URL}api/NurseDash/UpdateUpcomingAppoinmets?Id='+id, this.appointmentData).subscribe((res) => {
+  // this.http.post('`${this.baseUrl}api/NurseDash/UpdateUpcomingAppoinmets?Id='+id, this.appointmentData).subscribe((res) => {
   //   console.log("datacame");
   // });
 
@@ -76,7 +79,7 @@ export class DailogeService {
     // this.http.patch('http://localhost:3000/APPOINTMENT_DATA' ,product).subscribe((res) => {
 
     this.http
-      .put<any>(`${environment.URL}APPOINTMENT_DATA/3`, product)
+      .put<any>(`${this.baseUrl}APPOINTMENT_DATA/3`, product)
       .subscribe((res) => {
         console.log(product.id);
       });
@@ -86,7 +89,7 @@ export class DailogeService {
     // this.listOdeletefPosts.splice(index, 1);
     console.log('deletevalue' + id);
     this.http
-      .delete(`${environment.URL}Appointments/` + id)
+      .delete(`${this.baseUrl}Appointments/` + id)
       .subscribe((res) => {
         console.log(res);
         this.getAppointmentData();
@@ -102,7 +105,7 @@ export class DailogeService {
     // }
     // var raw = JSON.stringify(data);
     // return fetch(
-    //   `${environment.URL}api/NurseDash/UpdateNextPatient?Id=${id}`,
+    //   `${this.baseUrl}api/NurseDash/UpdateNextPatient?Id=${id}`,
     //   {
     //     method: 'PUT',
     //     headers: myHeaders,
@@ -110,7 +113,7 @@ export class DailogeService {
     //     redirect: 'follow',
     //   }
     // );
-    return this.http.put<any>(`${environment.URL}NurseDash/UpdateNextPatient?Id=`+id, data);
+    return this.http.put<any>(`${this.baseUrl}NurseDash/UpdateNextPatient?Id=`+id, data);
   }
 
   getDoctorListData(): Observable<Attendance[]> {

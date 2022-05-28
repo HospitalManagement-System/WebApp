@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
                 this.router.navigate(['/']);
                 return false;
             }
-
+            this.authenticationService.SetHeaderLabel(route.data['headerLabel']);
             // authorised so return true
             return true;
         }

@@ -30,7 +30,6 @@ import {
 //Mat Alert
 import { MatDialog } from '@angular/material/dialog';
 import { CacheInfo } from '../CacheInfo';
-
 @Component({
   selector: 'app-book-appointment',
   templateUrl: './book-appointment.component.html',
@@ -306,7 +305,10 @@ export class BookAppointmentComponent implements OnInit {
       this.diagnosicscheck = false;
 
       this.service.GetPhysicianById(e.value).subscribe((res) => {
-        this.physician.push(...res);
+        if(res.length > 0)
+          this.physician = res;
+        else
+          this.physician = [];
       });
     }
   }

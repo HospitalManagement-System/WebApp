@@ -30,6 +30,8 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { EditDailogeComponent } from '../nurse/dailoge/edit-dailoge/edit-dailoge.component';
 import { CacheInfo } from '../shared/CacheInfo';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 export interface UsersData {
   name: string;
   id: number;

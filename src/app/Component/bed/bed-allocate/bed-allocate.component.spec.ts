@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BedAllocateComponent } from './bed-allocate.component';
 
-describe('BedAllocateComponent', () => {
+describe('BedAllocateUserComponent', () => {
   let component: BedAllocateComponent;
   let fixture: ComponentFixture<BedAllocateComponent>;
 

@@ -24,7 +24,7 @@ export class PatientService {
 
   Edit(value: any) {
     this.http
-      .post<any>(`${environment.URL}INITIAL_EVENTS/`, value)
+      .post<any>(`${this.baseUrl}INITIAL_EVENTS/`, value)
       .subscribe((value) => {
         console.log(value);
       });
@@ -32,7 +32,7 @@ export class PatientService {
 
   GetPatientAppointmentDetailsById(AppointmentID: string) {
     return this.http.get<any>(
-      `${environment.URL}Appointments/GetEditBookAppointmentDetails/${AppointmentID}`
+      `${this.baseUrl}Appointments/GetEditBookAppointmentDetails/${AppointmentID}`
     );
   }
 }

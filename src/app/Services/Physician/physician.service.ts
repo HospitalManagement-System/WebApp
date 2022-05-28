@@ -13,8 +13,10 @@ import { Appointment } from '../Url';
   providedIn: 'root',
 })
 export class PhysicianService {
+  //Url Route
+  baseUrl = environment.URL;
   constructor(private http: HttpClient) {}
-  private readonly API_URL_NEXTPATIENT = `${environment.URL}PhysicianDashboard/GetNextAppointment`;
+  private readonly API_URL_NEXTPATIENT = `${this.baseUrl}PhysicianDashboard/GetNextAppointment`;
   // baseUrl = environment.AppointmentUrl;
   appointmentData: any;
 
@@ -26,7 +28,7 @@ export class PhysicianService {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     var raw = JSON.stringify(employee);
-    return fetch(`${environment.URL}PhysicianDashboard`, {
+    return fetch(`${this.baseUrl}PhysicianDashboard`, {
       method: 'POST',
       headers: myHeaders,
       body: raw,
@@ -35,7 +37,7 @@ export class PhysicianService {
   }
 
   // getPatient() {
-  //   return this.http.get<UserDetails[]>('`${environment.URL}api/AdminUserInfo/GetPatientUsers');
+  //   return this.http.get<UserDetails[]>('`${this.baseUrl}api/AdminUserInfo/GetPatientUsers');
   // }
 
   //   getAppointmentData(): Observable<Booking[]>{
@@ -45,7 +47,7 @@ export class PhysicianService {
 
   GetAllSpecialization() {
     return this.http.get<Specialization[]>(
-      `${environment.URL}PhysicianDashboard/GetAllSpecialization`
+      `${this.baseUrl}PhysicianDashboard/GetAllSpecialization`
     );
   }
 
@@ -55,7 +57,7 @@ export class PhysicianService {
 
   GetAppoinmentRequest(id: string, date: string) {
     return this.http.get<any[]>(
-      `${environment.URL}Appointments/GetEditBookAppointmentDetails/${id}`
+      `${this.baseUrl}Appointments/GetEditBookAppointmentDetails/${id}`
     );
   }
 

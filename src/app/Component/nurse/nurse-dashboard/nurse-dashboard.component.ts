@@ -6,6 +6,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AdminUsersService } from 'src/app/Services/Admin/admin-users.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DailogeService } from 'src/app/Services/dailoge.service';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 
 @Component({
   selector: 'app-nurse-dashboard',

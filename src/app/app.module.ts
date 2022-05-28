@@ -15,7 +15,7 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
@@ -73,7 +73,7 @@ import { DynamicViewComponent } from './Component/nurse/dynamic-view/dynamic-vie
 import { EditDailogeComponent } from './Component/nurse/dailoge/edit-dailoge/edit-dailoge.component';
 import { PatientDashboardComponent } from './Component/patient/patient-dashboard/patient-dashboard.component';
 import { BedDesignComponent } from './Component/shared/bed-design/bed-design.component';
-import { BedAllocateComponent } from './Component/bed/bed-allocate/bed-allocate.component';
+import { BedDetailsComponent } from './Component/bed/bed-details/bed-details.component';
 //fakebackend
 
 // used to create fake backend
@@ -140,8 +140,9 @@ import { PatientDynamicTableComponent } from './Component/shared/patientdynamic-
 import { AdminDashboardComponent } from './Component/admin/admin-dashboard/admin-dashboard.component';
 
 import { CurrentPatientComponent } from './Component/physician/CurrentPatient/current-patient.component';
-import { BedAllocateUserComponent } from './Component/bed/bed-allocate-user/bed-allocate-user.component';
-
+import { BedAllocateComponent } from './Component/bed/bed-allocate/bed-allocate.component';
+import { HeaderComponent } from './Component/home/header/header.component';
+import { BillInfoComponent } from './Component/shared/bill-info/bill-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -182,8 +183,10 @@ import { BedAllocateUserComponent } from './Component/bed/bed-allocate-user/bed-
     UpcomingAppointmentComponent,
     PatientDynamicTableComponent,
     BedDesignComponent,
+    BedDetailsComponent,
     BedAllocateComponent,
-    BedAllocateUserComponent
+    HeaderComponent,
+    BillInfoComponent
   ],
   imports: [
     HttpClientModule,
@@ -282,6 +285,10 @@ MatMenuModule,
       provide: HTTP_INTERCEPTORS,
       useClass:AuthInterceptor,
       multi:true 
+    },
+    {
+      provide: MatDialogRef,
+      useValue: {}
     },
     // provider used to create fake backend
     fakeBackendProvider,

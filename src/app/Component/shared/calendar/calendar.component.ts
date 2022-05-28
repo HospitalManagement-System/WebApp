@@ -13,6 +13,8 @@ import { CalendarService } from 'src/app/Services/Calendar/calendar.service';
 import { PatientService } from 'src/app/Services/patient.service';
 import { INITIAL_EVENTS, createEventId } from '../../../models/event.utils';
 import { CacheInfo } from '../CacheInfo';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 
 export class EventMap {
   // public id: string,

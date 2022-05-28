@@ -9,6 +9,8 @@ import {
 import { AdminService } from 'src/app/Services/admin.service';
 import { INITIAL_EVENTS, createEventId } from '../model/event.utils';
 import { EventMap } from '../model/admin.model';
+import { Subject } from 'rxjs';
+import { LoaderService } from 'src/app/Services/loader.service';
 
 @Component({
   selector: 'app-admin-calendar',

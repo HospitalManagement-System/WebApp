@@ -24,7 +24,7 @@ export class CalendarService {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     return fetch(
-      `${environment.URL}Appointments/ApproveReject/${Id}?Status=${Type}`,
+      `${this.baseUrl}Appointments/ApproveReject/${Id}?Status=${Type}`,
       {
         method: 'PATCH',
         headers: myHeaders,
@@ -41,7 +41,7 @@ export class CalendarService {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     return fetch(
-      `${environment.URL}Appointments/GetZoomLink/${Id}?Role=${Role}`,
+      `${this.baseUrl}Appointments/GetZoomLink/${Id}?Role=${Role}`,
       {
         method: 'GET',
         headers: myHeaders,
@@ -58,7 +58,7 @@ export class CalendarService {
       myHeaders.append('Authorization', `Bearer ${token}`);
     }
     return fetch(
-      `${environment.URL}Appointments/GetCalendarData/${Id}`,
+      `${this.baseUrl}Appointments/GetCalendarData/${Id}`,
       {
         method: 'GET',
         headers: myHeaders,

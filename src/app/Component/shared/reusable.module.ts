@@ -36,8 +36,9 @@ import { PatientDynamicTableComponent } from './patientdynamic-table/patientdyna
 
 
 import { SubscriptionComponent } from './subscription/subscription.component';
-import { BedAllocateComponent } from '../bed/bed-allocate/bed-allocate.component';
-import { BedDesignComponent } from './bed-design/bed-design.component'; // a plug
+import { BedDetailsComponent } from '../bed/bed-details/bed-details.component';
+import { BedDesignComponent } from './bed-design/bed-design.component';
+import { BillInfoComponent } from './bill-info/bill-info.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -55,8 +56,9 @@ FullCalendarModule.registerPlugins([
     InboxComponent,
     SubscriptionComponent,
     PatientDynamicTableComponent,
-    BedAllocateComponent,
+    BedDetailsComponent,
     BedDesignComponent,
+    BillInfoComponent,
   ],
   imports: [
     CommonModule,

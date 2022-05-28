@@ -27,7 +27,6 @@ export class AdminDashboardComponent implements OnInit {
     { value: '6', viewValue: 'Procedure' },
     { value: '7', viewValue: 'Subscription' }
   ];
-
   constructor(
     private adminservice: AdminService,
     public appoiService: DailogeService,
